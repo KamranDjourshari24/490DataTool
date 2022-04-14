@@ -28,53 +28,69 @@
         </div>
       </nav>
     </section>
+    <sectio id="profile-page-section">
       <div id="profile-info" class="container">
-        <div class="box">
-          <h1 class="title is-centered" id="prof-title">Eco City Farm</h1>
-          <div class="block" id="prof-logo-cont">
-            <img class="image is-fullwidth" id="prof-logo-1" src="images/cat-placeholder.jpeg" alt="A small grey kitten standing in a field of green grass with its tail up gazing into the camera."></img>
-          </div>
-        </div>
-        <div class="tabs is-centered">
-          <ul>
-            <li id="profile-tab" class="is-active" containerId="profile-info-container">
-              <a>
-                <span>Profile Information</span>
-              </a>
-            </li>
-            <li id="inventory-tab" containerId="inventory-table-container">
-              <a>
-                <span>Inventory</span>
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div class="box">
-          <div class="block prof-tab-cont" id="profile-info-container">Profile
-            <div class="columns">
-              <div class="column is-one-fifth is-offset-two-fifths">
-                <a class="button is-primary" id="prof-to-edit">Edit</a>
-                <a class="button is-link" id="prof-to-inventory">Update Inventory</a>
-              </div>
+        <div class="columns">
+          <div class="column is-one-fifth">
+            <div class="box">
+              <nav id="profile-contents">
+                <a class="profile-link" href="#username">
+                  <strong class="profile-link-name">Username</strong>
+                </a>
+              </nav>
             </div>
           </div>
-          <div class="block prof-tab-cont" id="inventory-table-container" style="display: none">
-            <table class="table is-fullwidth">
-              <thead>
-                <tr>
-                  <th>Product</th>
-                  <th>Quantity</th>
-                  <th>Unit</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <th>Apple Bottom Jeans</th>
-                  <th class="inv-disp-num">30</th>
-                  <th><abbr class="inventory-tab" title="pounds">lbs</abbr></th>
-                </tr>
-              </tbody>
-            </table>
+          <div class="column is-four-fifths">
+            <div class="box">
+              <h1 class="title is-centered" id="prof-title">Eco City Farm</h1>
+              <div class="block" id="prof-logo-cont">
+                <img class="image is-fullwidth" id="prof-logo-1" src="images/cat-placeholder.jpeg" alt="A small grey kitten standing in a field of green grass with its tail up gazing into the camera."></img>
+              </div>
+            </div>
+            <div class="tabs is-centered">
+              <ul>
+                <li id="profile-tab" class="is-active" containerId="profile-info-container">
+                  <a>
+                    <span>Profile Information</span>
+                  </a>
+                </li>
+                <li id="inventory-tab" containerId="inventory-table-container">
+                  <a>
+                    <span>Inventory</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <div class="box">
+              <div class="block prof-tab-cont" id="profile-info-container">
+                <h2 class="subtitle is-centered">Profile</h2>
+                <div class="columns">
+                  <div class="column is-one-fifth is-offset-two-fifths">
+                    <a class="button is-primary" id="prof-to-edit">Edit</a>
+                    <a class="button is-link" id="prof-to-inventory">Update Inventory</a>
+                  </div>
+                </div>
+              </div>
+              <div class="block prof-tab-cont" id="inventory-table-container" style="display: none">
+                <h2 class="subtitle is-centered">Inventory</h2>
+                <table class="table is-fullwidth">
+                  <thead>
+                    <tr>
+                      <th>Product</th>
+                      <th>Quantity</th>
+                      <th>Unit</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th>Apple Bottom Jeans</th>
+                      <th class="inv-disp-num">30</th>
+                      <th><abbr class="inventory-tab" title="pounds">lbs</abbr></th>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
           </div>
         </div>
       </div>
