@@ -9,6 +9,18 @@ import farmProducts from '../controllers/farmproducts.js';
 import farms from '../controllers/farms.js';
 const router = express.Router();
 
+function getOwnerIdByName(object, fname, lname) {
+  return object.filter((item) => (item.fname === fname)&&(item.lname === lname));
+}
+
+function getRowByFarm(object, farmname) {
+  return object.filter((item) => (item.farm_name === farmname))
+}
+
+function getTableRows(table) {
+  return `SELECT * FROM ${table}`;
+}
+
 /*farms endpoint*/
 router.route('/urban_farms')
   .get(async(req, res) => {
@@ -26,6 +38,30 @@ router.route('/urban_farms')
   /*Does not work for some reason*/
   .put(async(req, res) => { 
     try {
+      let ownerId;
+      let farmRow;
+      // getting owner ID by name
+      const owners = await db.sequelizeDB.query(getTableRows('owner'), {
+        type: sequelize.QueryTypes.SELECT
+      });
+      let owner = getOwnerIdByName(owners, req.body.fname, req.body.lname)
+      ownerId = owner.map((ownername) => ownername.owner_id)[0];
+
+
+      const farmInfo = await db.sequelizeDB.query(getTableRows('urban_farms'), {
+        type: sequelize.QueryTypes.SELECT
+      });
+      farmRow = getRowByFarm(farmInfo, req.body.farm_name)
+      const farmId = farmRow.map((farm) => farm.farm_id)[0];
+
+      // get owner ID by farm name instead if owner ID is null
+      if (!ownerId) {
+        ownerId = farmRow.map((ownername) => ownername.owner_id)[0];
+      }
+
+      console.log(farmId)
+      console.log(ownerId)
+      
       const result = await db.sequelizeDB.query(farms.farmsPut, {
         replacements: {
           farm_name: req.body.farm_name, 
@@ -39,7 +75,8 @@ router.route('/urban_farms')
           email: req.body.email, 
           website: req.body.website, 
           additional_info: req.body.additional_info, 
-          farm_id: req.body.farm_id,
+          farm_id: farmId,
+          owner_id: ownerId
         },
         type: sequelize.QueryTypes.UPDATE
       });
