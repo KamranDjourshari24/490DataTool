@@ -1,7 +1,7 @@
 const productGet = `SELECT product_id, product_name
 FROM products;`
 
-const productPut = `UPDATE eruption_aoa
+const productPut = `UPDATE products
   SET product_name = :product_name 
   WHERE product_id = :product_id;`
 
