@@ -17,6 +17,10 @@ function getRowByFarm(object, farmname) {
   return object.filter((item) => (item.farm_name === farmname))
 }
 
+function getRowByProduct(object, productname) {
+  return object.filter((item) => (item.product_name === productname))
+}
+
 function getTableRows(table) {
   return `SELECT * FROM ${table}`;
 }
@@ -58,9 +62,6 @@ router.route('/urban_farms')
       if (!ownerId) {
         ownerId = farmRow.map((ownername) => ownername.owner_id)[0];
       }
-
-      console.log(farmId)
-      console.log(ownerId)
       
       const result = await db.sequelizeDB.query(farms.farmsPut, {
         replacements: {
@@ -179,13 +180,28 @@ router.route('/farms_products')
     }
   })
 
-    /*Does not work for some reason*/
+    /*Does not work for some reason*/ 
+    // I think it is working now, might have been just typo in the request
   .delete(async(req, res) => {
     try {
+      // Mapping farm name to ID (assuming we just take the farm name and get the ID on the backend)
+      const farmsTable = await db.sequelizeDB.query(getTableRows('urban_farms'), {
+        type: sequelize.QueryTypes.SELECT
+      });
+      const farmRow = getRowByFarm(farmsTable, req.body.farm_name);
+      const farmId = farmRow.map((farm) => farm.farm_id)[0];
+
+      // Mapping product name to ID
+      const productsTable = await db.sequelizeDB.query(getTableRows('products'), {
+        type: sequelize.QueryTypes.SELECT
+      });
+      const productRow = getRowByProduct(productsTable, req.body.product_name);
+      const productId = productRow.map((product) => product.product_id)[0];
+
       const result = await db.sequelizeDB.query(farmProducts.farmProductsDelete, {
         replacements: {
-          farm_id: req.body.farm_id,
-          product_id: req.body.product_id,
+          farm_id: farmId,
+          product_id: productId,
         },
         type: sequelize.QueryTypes.DELETE
       });
