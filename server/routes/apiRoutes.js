@@ -23,7 +23,8 @@ router.route('/urban_farms')
     }
   })
 
-  .put(async(req, res) => {
+  /*Does not work for some reason*/
+  .put(async(req, res) => { 
     try {
       const result = await db.sequelizeDB.query(farms.farmsPut, {
         replacements: {
@@ -37,9 +38,7 @@ router.route('/urban_farms')
           phone_number: req.body.phone_number, 
           email: req.body.email, 
           website: req.body.website, 
-          description: req.body.description, 
-          fname: req.body.fname, 
-          lname: req.body.lname,
+          additional_info: req.body.additional_info, 
           farm_id: req.body.farm_id,
         },
         type: sequelize.QueryTypes.UPDATE
@@ -65,9 +64,8 @@ router.route('/urban_farms')
           phone_number: req.body.phone_number, 
           email: req.body.email, 
           website: req.body.website, 
-          description: req.body.description, 
-          fname: req.body.fname, 
-          lname: req.body.lname,
+          additional_info: req.body.additional_info,
+          owner_id: req.body.owner_id, 
         },
         type: sequelize.QueryTypes.INSERT
       });
@@ -144,9 +142,10 @@ router.route('/farms_products')
     }
   })
 
+    /*Does not work for some reason*/
   .delete(async(req, res) => {
     try {
-      const result = await db.sequelizeDB.query(farmProducts.farmProductsPost, {
+      const result = await db.sequelizeDB.query(farmProducts.farmProductsDelete, {
         replacements: {
           farm_id: req.body.farm_id,
           product_id: req.body.product_id,

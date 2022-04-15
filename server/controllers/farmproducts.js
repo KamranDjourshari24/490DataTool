@@ -5,7 +5,7 @@ JOIN products USING (product_id);`
 
 const farmProductsPut = `UPDATE farms_products
 SET product_quantity = :product_quantity, 
-product_scale = :product_scale, 
+product_scale = :product_scale
 WHERE farm_id = :farm_id AND product_id = :product_id;`
 
 const farmProductsPost = `INSERT INTO farms_products(product_quantity, product_scale, farm_id, product_id)
