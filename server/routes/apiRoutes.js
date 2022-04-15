@@ -5,8 +5,94 @@ import chalk from 'chalk';
 
 import db from '../database/initializeDB.js';
 import products from '../controllers/products.js';
-import farmProducts from '../controllers/farmproducts.js'
+import farmProducts from '../controllers/farmproducts.js';
+import farms from '../controllers/farms.js';
 const router = express.Router();
+
+/*farms endpoint*/
+router.route('/urban_farms')
+  .get(async(req, res) => {
+    try {
+      const result = await db.sequelizeDB.query(farms.farmsGet, {
+        type: sequelize.QueryTypes.SELECT
+      });
+      console.log('you touched the route!');
+      res.json(result);
+    } catch (err) {
+      res.json({error: 'something went wrong!'});
+    }
+  })
+
+  .put(async(req, res) => {
+    try {
+      const result = await db.sequelizeDB.query(farms.farmsPut, {
+        replacements: {
+          farm_name: req.body.farm_name, 
+          address1: req.body.address1, 
+          address2: req.body.address2,
+          city: req.body.city, 
+          zipcode: req.body.zipcode, 
+          latitude: req.body.latitude, 
+          longitude: req.body.longitude, 
+          phone_number: req.body.phone_number, 
+          email: req.body.email, 
+          website: req.body.website, 
+          description: req.body.description, 
+          fname: req.body.fname, 
+          lname: req.body.lname,
+          farm_id: req.body.farm_id,
+        },
+        type: sequelize.QueryTypes.UPDATE
+      });
+      res.json(result);
+      console.log('Successfully updated urban_farms')
+    } catch (err) {
+      res.json({error: 'something went wrong!'});
+    }
+  })
+
+  .post(async(req, res) => {
+    try {
+      const result = await db.sequelizeDB.query(farms.farmsPost, {
+        replacements: {
+          farm_name: req.body.farm_name, 
+          address1: req.body.address1, 
+          address2: req.body.address2,
+          city: req.body.city, 
+          zipcode: req.body.zipcode, 
+          latitude: req.body.latitude, 
+          longitude: req.body.longitude, 
+          phone_number: req.body.phone_number, 
+          email: req.body.email, 
+          website: req.body.website, 
+          description: req.body.description, 
+          fname: req.body.fname, 
+          lname: req.body.lname,
+        },
+        type: sequelize.QueryTypes.INSERT
+      });
+      console.log('Successfully inserted into urban_farms')
+      res.json(result);
+    } catch (err) {
+      res.json({error: 'something went wrong!'});
+    }
+  })
+
+  .delete(async(req, res) => {
+    try {
+      const result = await db.sequelizeDB.query(farms.farmsDelete, {
+        replacements: {
+          farm_id: req.body.farm_id,
+        },
+        type: sequelize.QueryTypes.DELETE
+      });
+      console.log('Successfully deleted from urban_farms')
+      res.json(result);
+    } catch (err) {
+      res.json({error: 'something went wrong!'});
+    }
+  });
+
 
 /*farms products endpoint*/
 router.route('/farms_products')
