@@ -213,7 +213,32 @@ router.route('/farms_products')
     }
   });
 
+/* Inidividual farm products endpoint */
+router.route('/farms_products/:farm_id')
+  .get(async(req, res) => {
+    try {
+      // // Mapping farm name to ID (assuming we just take the farm name and get the ID on the backend)
+      // const farmsTable = await db.sequelizeDB.query(getTableRows('urban_farms'), {
+      //   type: sequelize.QueryTypes.SELECT
+      // });
+      // const farmRow = getRowByFarm(farmsTable, req.body.farm_name);
+      // const farmId = farmRow.map((farm) => farm.farm_id)[0];
+      // console.log(farmRow)
+      
 
+
+      const result = await db.sequelizeDB.query(farmProducts.oneFarmProductsGet, {
+        replacements: {
+          farm_id: req.params.farm_id
+        },
+        type: sequelize.QueryTypes.SELECT
+      });
+      res.json(result);
+      console.log("you touched the route!")
+    } catch (err) {
+      res.json({error: 'something went wrong!'});
+    }
+  });
 
 /* products endpoint */
 router.route('/products')
