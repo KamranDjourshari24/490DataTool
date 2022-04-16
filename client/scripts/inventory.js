@@ -8,11 +8,25 @@ async function populateInventory(farmId) {
   
   invData.forEach((product) => {
     const appendItem = document.createElement("tr");
-    
+    let abbrev;
+    switch (product["product_scale"]) {
+      case "lbs":
+        abbrev = 'pounds';
+        break;
+      case "kg":
+        abbrev = 'kilograms';
+        break;
+      case "n":
+        abbrev = 'count';
+        break;
+      default:
+        abbrev = 'none';
+    }
+
     appendItem.innerHTML = `
-    <th>${product["product_name"]}</th>
+    <td>${product["product_name"]}</td>
     <td>${product["product_quantity"]}</td>
-    <td>${product["product_scale"]}</td>`;
+    <td><abbr title="${abbrev}">${product["product_scale"]}</abbr></td>`;
 
     inventoryTable.append(appendItem);
   })
