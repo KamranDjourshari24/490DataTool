@@ -5,7 +5,7 @@ async function populateInventory(farmId) {
   const productsUrl = '/api/farms_products/' + farmId;
   const response = await fetch(productsUrl);
   const invData = await response.json();
-  console.log(invData);
+  
   invData.forEach((product) => {
     const appendItem = document.createElement("tr");
     
@@ -19,14 +19,14 @@ async function populateInventory(farmId) {
 }
 
 
-// async function dataHandler() {
-//   populateInventory('2');
-// }
+async function dataHandler() {
+  await populateInventory('2');
+}
 
 
 
 async function windowActions() {
-  populateInventory('2');
+  await dataHandler();
 }
 
 window.onload = windowActions;
