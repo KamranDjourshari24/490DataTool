@@ -7,6 +7,7 @@ import db from '../database/initializeDB.js';
 import products from '../controllers/products.js';
 import farmProducts from '../controllers/farmproducts.js';
 import farms from '../controllers/farms.js';
+import owners from '../controllers/owners.js';
 const router = express.Router();
 
 function getOwnerIdByName(object, fname, lname) {
@@ -239,6 +240,57 @@ router.route('/products')
     } catch (err) {
       res.json({error: 'something went wrong!'});
     }
-  })
+  });
+
+  /* owners endpoint */
+router.route('/owners')
+
+.post(async(req, res) => {
+  try {
+    const result = await db.sequelizeDB.query(owners.ownersPost, {
+      replacements: {
+        fname: req.body.fname,
+        lname: req.body.lname,
+      },
+      type: sequelize.QueryTypes.INSERT
+    });
+    res.json(result);
+    console.log('Successfully inserted into owners')
+  } catch (err) {
+    res.json({error: 'something went wrong!'});
+  }
+})
+
+.put(async(req, res) => {
+  try {
+    const result = await db.sequelizeDB.query(owners.ownersPut, {
+      replacements: {
+        owner_id: req.body.owner_id,
+        fname: req.body.fname,
+        lname: req.body.lname,
+      },
+      type: sequelize.QueryTypes.UPDATE
+    });
+    res.json(result);
+    console.log('Successfully updated owners')
+  } catch (err) {
+    res.json({error: 'something went wrong!'});
+  }
+})
+
+.delete(async(req, res) => {
+    try {
+      const result = await db.sequelizeDB.query(owners.ownersDelete, {
+        replacements: {
+          owner_id: req.body.owner_id
+        },
+        type: sequelize.QueryTypes.DELETE
+      });
+      console.log('Successfully deleted from owners')
+      res.json(result);
+    } catch (err) {
+      res.json({error: 'something went wrong!'});
+    }
+  });
 
 export default router;
