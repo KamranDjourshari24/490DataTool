@@ -1,12 +1,13 @@
 // const text = require("body-parser/lib/types/text");
 // Author: Jonah Pool
 // Email: jonahpool99@gmail.com
-// ***************************************************************************************************
+// ************************************************************************************************
 // Description:
 //    Inventory display page for a farm, which also allows for editing, adding, and removing items.
 //    
 //    This page should ONLY be accessible by a logged in user. Security protocols must be added to 
 //    avoid misuse.
+// ************************************************************************************************
 
 const inventoryTable = document.getElementById('inventory-body');
 

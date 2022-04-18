@@ -28,38 +28,3 @@
   display: block;
   margin: 0 auto;
 }
-
-tbody.inventory-body > tr {
-  min-height: 15px;
-}
-
-.quantity-buttons {
-  font-size:medium;
-  padding-left:0px;
-  padding-right:0px;
-}
-
-div.quant-btn-col {
-  margin-left: 15px;
-}
-
-.quant-text-col .quant-btn-col {
-  align-items: auto;
-}
-
-input.quant-text-box {
-  min-height:40px;
-  width: 40px;
-  font-size: 1.25rem;
-  align-content: center;
-}
-
-input[type=number]::-webkit-outer-spin-button,
-input[type=number]::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-}
-
-input[type=number] {
-    -moz-appearance:textfield;
-}
