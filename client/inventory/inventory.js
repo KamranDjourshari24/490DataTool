@@ -81,7 +81,6 @@ async function generateEditUI() {
   actBtnContainer.append(cancelButton);
 
   // Add delete button to each row.
-  
   itemRows.forEach((row) => {
     const appDelete = document.createElement("td");
     appDelete.classList.add("tabel-row");
@@ -205,6 +204,9 @@ async function generateEditUI() {
 }
 
 async function updateInventory() {
+  const tableRows = inventoryTable.querySelectorAll("*");
+  tableRows.forEach((row) => { row.remove(); });
+  await populateInventory('2');
   alert("Submitted!");
 }
 
