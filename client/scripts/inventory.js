@@ -1,4 +1,12 @@
 // const text = require("body-parser/lib/types/text");
+// Author: Jonah Pool
+// Email: jonahpool99@gmail.com
+// ***************************************************************************************************
+// Description:
+//    Inventory display page for a farm, which also allows for editing, adding, and removing items.
+//    
+//    This page should ONLY be accessible by a logged in user. Security protocols must be added to 
+//    avoid misuse.
 
 const inventoryTable = document.getElementById('inventory-body');
 
@@ -37,6 +45,54 @@ async function populateInventory(farmId) {
 }
 
 async function generateEditUI() {
+  
+  const actBtnContainer = document.getElementById("action-button-container");
+  const itemRows = document.querySelectorAll("tr.table-row");
+
+  // Remove edit button.
+  const editButton = document.getElementById("edit-inv-btn");
+  editButton.remove();
+
+  // Create submit button. Will save changes to form.
+  const submitButton = document.createElement("button");
+  submitButton.classList.add("btn");
+  submitButton.classList.add("btn-primary");
+  submitButton.setAttribute("id", "submit-inv-btn");
+  submitButton.textContent = "Save Changes";
+  submitButton.addEventListener('click', updateInventory);
+  actBtnContainer.append(submitButton);
+
+  // Create cancel button. Reverts all changes on page.
+  const cancelButton = document.createElement("button");
+  cancelButton.classList.add("btn");
+  cancelButton.classList.add("btn-secondary");
+  cancelButton.setAttribute("id", "cancel-inv-btn");
+  cancelButton.textContent = "Cancel";
+  cancelButton.addEventListener('click', async function(evt) {
+    itemRows.forEach((row) => {
+      row.remove();
+    }); 
+    submitButton.remove();
+    cancelButton.remove();
+    await populateInventory('2');
+    actBtnContainer.append(editButton);
+  });
+  actBtnContainer.append(cancelButton);
+
+  // Add delete button to each row.
+  
+  itemRows.forEach((row) => {
+    const appDelete = document.createElement("td");
+    appDelete.classList.add("tabel-row");
+    appDelete.innerHTML = `<button class="btn btn-light" alt="delete product"><i class="fa-solid fa-x"></i></button>`;
+    row.append(appDelete);
+    const delButton = appDelete.querySelector("button.btn");
+
+    delButton.addEventListener('click', (evt) => {
+      row.remove();
+    });
+  });
+
   const quantityBoxes = document.querySelectorAll(".quantity-cell");
 
   quantityBoxes.forEach((box) => {
@@ -91,10 +147,8 @@ async function generateEditUI() {
   const addButtons = document.querySelectorAll(".btn-increase");
   
   async function addQuant(evt) {
-
     const textBox = evt.target.parentNode.parentNode.parentNode.querySelector(".quant-text-box");
     textBox.stepUp();
-    
   }
 
 
@@ -150,14 +204,14 @@ async function generateEditUI() {
 }
 
 async function updateInventory() {
-
+  alert("Submitted!");
 }
 
 
 
 async function dataHandler() {
   await populateInventory('2');
-  await generateEditUI();
+  // await generateEditUI();
 
   // const quantityBoxes = document.querySelectorAll(".quantity-cell");
 }
