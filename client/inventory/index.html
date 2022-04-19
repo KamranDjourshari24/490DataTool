@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <!-- Required meta tags -->
@@ -57,8 +57,58 @@
             <tbody id="inventory-body">
             </tbody>
           </table>
-          <div id="action-button-container" class="translate-middle">
-            <button id="edit-inv-btn" class="btn btn-primary btn-lg" onclick="generateEditUI()">Edit</button>
+        </div>
+      </div>
+
+      <!-- Modal for editing and adding new products. -->
+      <div class="modal modal-fade" id="editForm" tabindex="-1" aria-labelledby="editFormLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="editFormLabel">Product Details</h5>
+              <button type="button" class="btn-close close-btn" data-bs-dismiss="modal" aria-label="Close">X</button>
+            </div>
+            <div class="modal-body">
+              <div class="container">
+                <form name="find">
+                  <div class="row form-row">
+                    <label for="productNameControllerInput">Product Name</label>
+                    <input type="text" class="form-control" name="product_name" id="productNameControllerInput1" placeholder="Strawberries, Organic 2 qts">
+                  </div>
+                  <div class="row form-row">
+                    <label for="descriptionControllerInput2">Description</label>
+                    <textarea name="product_description" class="form-control" id="descriptionControllerInput2" placeholder="A short description" rows="3"></textarea>
+                  </div>
+                  <div class="row form-row">
+                    <div class="col">
+                      <label for="quantityContorllerInput3">Quantity Available</label>
+                      <input type="number" name="product_quantity" id="quantityContorllerInput3" min="1" value="1" placeholder="1">
+                    </div>
+                    <div class="col">
+                      <label for="scaleDropdown">Unit Scale</label></br>
+                      <select id="scaleDropdown" class="form-select" name="product_scale">
+                        <option value="0">Select Unit</option>
+                        <option value="1">lbs</option>
+                        <option value="2">oz</option>
+                        <option value="3">kg</option>
+                        <option value="4">count</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="row form-row">
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="isAvailable" id="isAvailableControllerInput5">
+                    <label class="form-check-label" for="isAvailableControllerInput5">Is Available</label>
+                  </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="submit" id="saveChangesBtn" class="btn btn-primary" for="">Save</button>
+              <button class="btn btn-secondary close-btn">Cancel</button>
+              <button class="btn btn-danger">Delete</button>
+            </div>
           </div>
         </div>
       </div>
