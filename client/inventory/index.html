@@ -57,36 +57,55 @@
             <tbody id="inventory-body">
             </tbody>
           </table>
+          <button id="newProductButton" type="button" class="btn btn-secondary" data-modal-type="newProduct">Add product +</button>
+        </div>
+      </div>
+
+      <div class="modal modal-fade" id="saveChangesModal" tabindex="-1" aria-labelledby="saveChangesLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="saveChangesLabel">Confirm Exit</h5>
+              <button type="button" class="btn btn-close close-btn" data-bs-dismiss="modal" aria-label="Close">X</button>
+            </div>
+            <div class="modal-content">
+              <p>Are you sure you want to exit? Unsaved changes will be lost.</p>
+            </div>
+            <div class="modal-footer">
+              <button id="confirmExitBtn" class="btn btn-warning">Exit</button>
+              <button type="button" id="returnToEditBtn" class="btn btn-secondary close-btn">Cancel</button>
+            </div>
+          </div>
         </div>
       </div>
 
       <!-- Modal for editing and adding new products. -->
-      <div class="modal modal-fade" id="editForm" tabindex="-1" aria-labelledby="editFormLabel" aria-hidden="true">
+      <div class="modal modal-fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="editFormLabel">Product Details</h5>
+              <h5 class="modal-title" id="editModalLabel">Product Details</h5>
               <button type="button" class="btn-close close-btn" data-bs-dismiss="modal" aria-label="Close">X</button>
             </div>
             <div class="modal-body">
               <div class="container">
-                <form name="find">
+                <form id="editForm">
                   <div class="row form-row">
                     <label for="productNameControllerInput">Product Name</label>
-                    <input type="text" class="form-control" name="product_name" id="productNameControllerInput1" placeholder="Strawberries, Organic 2 qts">
+                    <input type="text" class="form-control edit-form-control" name="product_name" id="productNameControllerInput1" placeholder="i.e. Strawberries, Organic 2 qts">
                   </div>
                   <div class="row form-row">
                     <label for="descriptionControllerInput2">Description</label>
-                    <textarea name="product_description" class="form-control" id="descriptionControllerInput2" placeholder="A short description" rows="3"></textarea>
+                    <textarea name="product_description" class="form-control edit-form-control" id="descriptionControllerInput2" placeholder="A short description of your product." rows="3"></textarea>
                   </div>
                   <div class="row form-row">
                     <div class="col">
                       <label for="quantityContorllerInput3">Quantity Available</label>
-                      <input type="number" name="product_quantity" id="quantityContorllerInput3" min="1" value="1" placeholder="1">
+                      <input type="number" class="edit-form-control" name="product_quantity" id="quantityContorllerInput3" min="1" value="1" placeholder="Ex. 1">
                     </div>
                     <div class="col">
                       <label for="scaleDropdown">Unit Scale</label></br>
-                      <select id="scaleDropdown" class="form-select" name="product_scale">
+                      <select id="scaleDropdown" class="edit-form-control form-select" name="product_scale">
                         <option value="0">Select Unit</option>
                         <option value="1">lbs</option>
                         <option value="2">oz</option>
@@ -97,7 +116,7 @@
                   </div>
                   <div class="row form-row">
                   <div class="form-check">
-                    <input class="form-check-input" type="checkbox" name="isAvailable" id="isAvailableControllerInput5">
+                    <input class="form-check-input edit-form-control" type="checkbox" name="isAvailable" id="isAvailableControllerInput5">
                     <label class="form-check-label" for="isAvailableControllerInput5">Is Available</label>
                   </div>
                   </div>
@@ -105,7 +124,7 @@
               </div>
             </div>
             <div class="modal-footer">
-              <button type="submit" id="saveChangesBtn" class="btn btn-primary" for="">Save</button>
+              <button form="editForm" type="submit" id="saveChangesBtn" class="btn btn-primary">Save</button>
               <button class="btn btn-secondary close-btn">Cancel</button>
               <button class="btn btn-danger">Delete</button>
             </div>
