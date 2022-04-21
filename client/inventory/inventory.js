@@ -9,6 +9,8 @@
 //    avoid misuse.
 // ************************************************************************************************
 
+import { request } from "express";
+
 async function disableButton(btn) {
   btn.setAttribute('disabled', true);
 }
@@ -16,7 +18,7 @@ async function disableButton(btn) {
 async function enableButton(btn) {
   btn.removeAttribute("disabled");
 }
-
+const productModal = new bootstrap.Modal(document.getElementById('editModal'));
 const productNameIn = document.getElementById("productNameControllerInput1");
 const descriptionIn = document.getElementById("descriptionControllerInput2");
 const quantityIn = document.getElementById("quantityContorllerInput3");
@@ -26,6 +28,7 @@ const productForm = document.getElementById("editForm");
 
 const inventoryTable = document.getElementById('inventory-body');
 
+const controller = new AbortController();
 
 function resetModalContents() {
   productNameIn.value='';
@@ -43,7 +46,7 @@ function resetModalContents() {
 
 
 
-async function populateInventory(farmId, targetModal) {
+async function populateInventory(farmId) {
   const tableRows = inventoryTable.querySelectorAll("*");
   tableRows.forEach((row) => { row.remove(); });
 
@@ -78,11 +81,10 @@ async function populateInventory(farmId, targetModal) {
 
 
     const editButton = appendItem.querySelector(".edit-btn");
-  
     editButton.addEventListener('click', async (evt) => {
       resetModalContents();
-      await fillEditModal(targetModal, appendItem);
-      targetModal.show();
+      await fillEditModal(appendItem);
+      productModal.show();
     });
 
     inventoryTable.append(appendItem);
@@ -100,7 +102,7 @@ async function submitButtonHandler() {
 
 
 
-async function fillEditModal(targetModal, row) {
+async function fillEditModal(row) {
   const invColumns = row.querySelectorAll('td[class$="-cell"]');
 
   // Collect product data from table row.
@@ -141,11 +143,11 @@ async function fillEditModal(targetModal, row) {
   scaleDropdown.selectedIndex = selIndex;
   // handle submit button
   submitButtonHandler();
-  productForm.addEventListener('submit', async function (evt) {
-    await updateInventory(evt, targetModal);
-  }, {once: true});
+  submitButton.removeEventListener('click', createProduct);
+  submitButton.removeEventListener('click', updateInventory);
+  submitButton.addEventListener('click', await updateInventory, {signal: controller.signal});
+  // productForm.setAttribute('onsubmit', 'updateInventory()');
 }
-
 
 async function initModal(targetModal) {
 
@@ -163,64 +165,61 @@ async function initModal(targetModal) {
   closeButtons.forEach((button) => {
     button.addEventListener('click', async function (evt) {
       targetModal.hide();
-      
       resetModalContents();
     });
   });
 
 
-  if (targetModal._element.getAttribute('id') == 'editModal') {
+  if (productModal._element.getAttribute('id') == 'editModal') {
     resetModalContents();
     scaleDropdown.addEventListener('change', submitButtonHandler);
   }
-  
-
-  
 }
 
 
-async function fillCreateModal(targetModal) {
+async function fillCreateModal() {
   resetModalContents();
-  targetModal.show();
+  if (productNameIn.getAttribute('disabled')) {
+    productNameIn.removeAttribute('disabled');
+  }
+  productModal.show();
   submitButtonHandler();
-  productForm.addEventListener('submit', async function (evt) {
-    await createProduct(evt, targetModal);
-  }, {once: true});
+  console.log('here');
+  submitButton.removeEventListener('click', createProduct);
+  submitButton.removeEventListener('click', updateInventory);
+
+  submitButton.addEventListener('click', createProduct, {signal: controller.signal});
 }
 
-async function updateInventory(evt, targetModal) {
+async function updateInventory(evt) {
   evt.preventDefault();
   alert("Product updated");
-  await populateInventory('2', targetModal);
+  await populateInventory('2');
 }
 
-async function createProduct(evt, targetModal) {
+async function createProduct(evt) {
   evt.preventDefault();
   alert("Product created");
-  await populateInventory('2', targetModal);
+  
+  await populateInventory('2');
 }
 
 
 
 async function dataHandler() {
-
-  const productModal = new bootstrap.Modal(document.getElementById('editModal'));
   const revertChangesModal = new bootstrap.Modal(document.getElementById('saveChangesModal'));
   await populateInventory('2', productModal);
   await initModal(productModal);
   await initModal(revertChangesModal);
   const createButton = document.getElementById("newProductButton");
   createButton.addEventListener('click', async function (evt) {
-    console.log('here');
-    console.log(productModal);
-    await fillCreateModal(productModal);
+    await fillCreateModal();
   });
 }
 
 
 
 async function windowActions() {
-  
   await dataHandler();
 }
 

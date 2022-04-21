@@ -3,7 +3,7 @@ FROM urban_farms
 JOIN farms_products USING (farm_id)
 JOIN products USING (product_id);`
 
-const oneFarmProductsGet = `SELECT farm_name, product_quantity, product_scale, product_name
+const oneFarmProductsGet = `SELECT farm_name, product_quantity, product_scale, product_name, product_id
 FROM urban_farms
 JOIN farms_products USING (farm_id)
 JOIN products USING (product_id)
