@@ -27,7 +27,9 @@ const productForm = document.getElementById("editForm");
 
 const inventoryTable = document.getElementById('inventory-body');
 
-const controller = new AbortController();
+// const controller = new AbortController();
+
+const hardFarmId = 'Apple_Farm';
 
 function resetModalContents() {
   productNameIn.value='';
@@ -35,11 +37,6 @@ function resetModalContents() {
   quantityIn.value='';
   scaleDropdown.selectedIndex = '0';
   availabilityIn.selectedIndex = '0';
-  // try {
-  //   submitButton.removeEventListener('submit', createProduct);
-  // } catch {
-  //   submitButton.removeEventListener('submit', updateInventory);
-  // }
 }
 
 
@@ -152,16 +149,7 @@ async function fillEditModal(row) {
 }
 
 async function initModal(targetModal) {
-
-  // productNameIn.addEventListener('change', add)
-  // descriptionIn
-  // quantityIn
-  // scaleDropdown
-  // submitButton
   const editFields = document.querySelectorAll('.edit-form-control');
-  
-
-
 
   const closeButtons = targetModal._element.querySelectorAll(".close-btn");
   closeButtons.forEach((button) => {
@@ -189,7 +177,6 @@ async function fillCreateModal() {
   submitButtonHandler();
   submitButton.removeEventListener('click', createProduct);
   submitButton.removeEventListener('click', updateInventory);
-
   submitButton.addEventListener('click', createProduct);
 }
 
@@ -208,12 +195,13 @@ async function updateInventory(evt) {
       'content-type': 'application/json; charset=UTF-8'
     }
   }
-  const response = await fetch('../api/farms_products/Apple_Farm', options);
-  const data = await response.json();
+  
   try {
+    const response = await fetch('../api/farms_products/'+hardFarmId, options);
+    const data = await response.json();
     console.log(data['message']);
     productModal.hide();
-    await populateInventory('Apple_Farm');
+    await populateInventory(hardFarmId);
   } catch (err) {
     console.error('Update unsuccessful');
   }
@@ -221,16 +209,61 @@ async function updateInventory(evt) {
 
 async function createProduct(evt) {
   evt.preventDefault();
-  alert("Product created");
-  productModal.hide();
-  await populateInventory('Apple_Farm');
+  // alert("Product created");
+  const options = {
+    method: 'POST',
+    body: JSON.stringify({
+      product_name: productNameIn.value,
+      product_description: descriptionIn.value,
+      product_quantity: quantityIn.value,
+      product_scale: scaleDropdown.value,
+      is_available: availabilityIn.value
+    }),
+    headers: {
+      'content-type': 'application/json; charset=UTF-8'
+    }
+  }
+
+  try {
+    const response = await fetch('../api/farms_products/'+hardFarmId, options);
+    const data = await response.json();
+    console.log(data);
+    productModal.hide();
+    await populateInventory(hardFarmId);
+  } catch (err) {
+    console.error('Unable to create new product.')
+  }
+  
+}
+
+async function deleteProduct(evt) {
+  evt.preventDefault();
+  const options = {
+    method: 'DELETE',
+    body: JSON.stringify({
+      product_name: productNameIn.value,
+    }),
+    headers: {
+      'content-type': 'application/json; charset=UTF-8'
+    }
+  }
+  
+  try {
+    const response = await fetch('../api/farms_products/'+hardFarmId, options);
+    const data = await response.json();
+    console.log(data['message']);
+    productModal.hide();
+    await populateInventory(hardFarmId);
+  } catch (err) {
+    console.error('Unable to delete product');
+  }
 }
 
 
 
 async function dataHandler() {
   const revertChangesModal = new bootstrap.Modal(document.getElementById('saveChangesModal'));
-  await populateInventory('Apple_Farm');
+  await populateInventory(hardFarmId);
   await initModal(productModal);
   await initModal(revertChangesModal);
   const createButton = document.getElementById("newProductButton");
