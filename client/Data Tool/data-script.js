@@ -25,8 +25,7 @@ const city = document.querySelector("#city");
 const zip = document.querySelector("#zip");
 const results = document.querySelector("#results");
 
-function validateURL(link)
-{
+function validateURL(link) {
     if (link.indexOf("http://www.") == 0 || link.indexOf("https://www.") == 0) {
         return link
     } else if (link.indexOf("www.") == 0){
