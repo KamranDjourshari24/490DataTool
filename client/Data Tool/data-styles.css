@@ -1,6 +1,8 @@
 .column {
     margin-left: 90px;
     margin-right: 90px;
+    align-items: center;
+    align-content: center;
 }
 
 #mapid { 
@@ -29,4 +31,82 @@
   background-color: green;
   padding: 15px;
   border-radius: 25px; 
+}
+
+.search {
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.submit {
+  margin-top: 15px;
+}
+
+.no-result {
+  margin-top: 70px;
+  margin-bottom: 70px;
+  margin-left: 70px;
+  margin-right: 70px;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
+.farm-image {
+  display: flex;
+}
+
+.result {
+  margin-left: 70px;
+  margin-right: 70px;
+}
+
+.content {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.farm-info {
+  justify-content: center;
+  align-items: center;
+  align-content: space-between;
+  margin-left: 50px;
+}
+
+.farm-name {
+  margin-top: 10px;
+}
+
+@media only screen and (max-width: 600px) {
+  .farm-info {
+    justify-content: center;
+    align-items: center;
+    align-content: space-between;
+    margin-left: 0px;
+  }
+
+  .farm-name {
+    text-align: center;
+  }
+
+  .farm-row {
+    padding-left: 1.5em;
+    text-indent:-1.5em;
+  }
+}
+
+@media only screen and (min-width: 1370px) and (max-width: 1605px) {
+  .result {
+    margin-left: 200px;
+    margin-right: 200px;
+  }
+
+  .farm-info {
+    align-items: center;
+    justify-content: flex-end;
+    /* margin-left: 40%; */
+  }
 }
