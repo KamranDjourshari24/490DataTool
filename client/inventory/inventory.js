@@ -212,6 +212,7 @@ async function updateInventory(evt) {
   const data = await response.json();
   try {
     console.log(data['message']);
+    productModal.hide();
     await populateInventory('Apple_Farm');
   } catch (err) {
     console.error('Update unsuccessful');
@@ -221,7 +222,7 @@ async function updateInventory(evt) {
 async function createProduct(evt) {
   evt.preventDefault();
   alert("Product created");
-  
+  productModal.hide();
   await populateInventory('Apple_Farm');
 }
 
