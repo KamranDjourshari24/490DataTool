@@ -242,7 +242,54 @@ router.route('/farms_products/:farm_name')
   })
 
   .post(async(req, res) => {
-    res.json({error: 'Route not available'});
+    
+    try {
+      const prodInfo = await db.sequelizeDB.query(getTableRows('products'), {
+        type: sequelize.QueryTypes.SELECT
+      });
+  
+      const prodRow = getRowByProduct(prodInfo, req.body.product_name);
+      let prodId = prodRow.map((product) => product.product_id)[0];
+      console.log(prodId);
+      console.log(req.params.farm_name);
+      if (prodId != null) {
+        res.send({message: "Product already exists in table"});
+
+      } else {
+        const newProd = await db.sequelizeDB.query(products.productPost, {
+          replacements: {product_name: req.body.product_name},
+          type: sequelize.QueryTypes.INSERT
+        });
+        prodId = newProd[0];
+      }
+      // Mapping farm name to ID (assuming we just take the farm name and get the ID on the backend)
+      const farmName = req.params.farm_name.replace('_', ' ');
+      const farmsTable = await db.sequelizeDB.query(getTableRows('urban_farms'), {
+        type: sequelize.QueryTypes.SELECT
+      });
+      const farmRow = getRowByFarm(farmsTable, farmName);
+      const farmId = farmRow.map((farm) => farm.farm_id)[0];
+      const result = await db.sequelizeDB.query(farmProducts.farmProductsPost, {
+        replacements: {
+          product_quantity: req.body.product_quantity,
+          product_scale: req.body.product_scale,
+          product_description: req.body.product_description,
+          is_available: req.body.is_available,
+          farm_id: farmId,
+          product_id: prodId,
+        },
+        type: sequelize.QueryTypes.INSERT
+      });
+      res.json(result);
+
+    } catch (err) {
+      console.error(err);
+      res.json({error: 'something went wrong!'});
+    }
+    
+    
+    
+    // res.json({error: 'Route not available'});
   })
   .put(async(req, res) => {
     try {
