@@ -169,6 +169,8 @@ router.route('/farms_products')
         replacements: {
           product_quantity: req.body.product_quantity,
           product_scale: req.body.product_scale,
+          product_description: req.body.product_description,
+          is_available: req.body.is_available,
           farm_id: req.body.farm_id,
           product_id: req.body.product_id,
         },
@@ -214,28 +216,72 @@ router.route('/farms_products')
   });
 
 /* Inidividual farm products endpoint */
-router.route('/farms_products/:farm_id')
+router.route('/farms_products/:farm_name')
   .get(async(req, res) => {
     try {
       // // Mapping farm name to ID (assuming we just take the farm name and get the ID on the backend)
-      // const farmsTable = await db.sequelizeDB.query(getTableRows('urban_farms'), {
-      //   type: sequelize.QueryTypes.SELECT
-      // });
-      // const farmRow = getRowByFarm(farmsTable, req.body.farm_name);
-      // const farmId = farmRow.map((farm) => farm.farm_id)[0];
-      // console.log(farmRow)
-      
-
-
+      const farmName = req.params.farm_name.replace('_', ' ');
+      const farmInfo = await db.sequelizeDB.query(getTableRows('urban_farms'), {
+        type: sequelize.QueryTypes.SELECT
+      });
+      // console.log(farmName);
+      const farmRow = getRowByFarm(farmInfo, farmName);
+      const farmId = farmRow.map((farm) => farm.farm_id)[0];
+      // console.log(farmRow);
       const result = await db.sequelizeDB.query(farmProducts.oneFarmProductsGet, {
         replacements: {
-          farm_id: req.params.farm_id
+          farm_id: farmId
         },
         type: sequelize.QueryTypes.SELECT
       });
       res.json(result);
-      console.log("you touched the route!")
+      console.log("you touched the route!");
     } catch (err) {
+      res.json({error: 'something went wrong!'});
+    }
+  })
+
+  .post(async(req, res) => {
+    res.json({error: 'Route not available'});
+  })
+  .put(async(req, res) => {
+    try {
+      const farmName = req.params.farm_name.replace('_', ' ');
+
+      const farmInfo = await db.sequelizeDB.query(getTableRows('urban_farms'), {
+        type: sequelize.QueryTypes.SELECT
+      });
+  
+      const farmRow = getRowByFarm(farmInfo, farmName);
+      const farmId = farmRow.map((farm) => farm.farm_id)[0];
+      
+      const prodInfo = await db.sequelizeDB.query(getTableRows('products'), {
+        type: sequelize.QueryTypes.SELECT
+      });
+
+      const prodRow = getRowByProduct(prodInfo, req.body.product_name);
+      const prodId = prodRow.map((product) => product.product_id)[0];
+      console.log(farmId);
+      console.log(prodId);
+
+      const result = await db.sequelizeDB.query(farmProducts.farmProductsPut, {
+        replacements: {
+          farm_id: farmId,
+          product_id: prodId,
+          product_description: req.body.product_description,
+          is_available: req.body.is_available,
+          product_name: req.body.product_name,
+          product_quantity: req.body.product_quantity,
+          product_scale: req.body.product_scale
+        },
+        type: sequelize.QueryTypes.UPDATE
+      });
+      // console.log(result);
+      console.log("you touched the route!");
+      res.json(result);
+      
+    } catch(err) {
+      console.error(err);
       res.json({error: 'something went wrong!'});
     }
   });
