@@ -52,7 +52,6 @@ async function populateInventory(farmName) {
   const productsUrl = '../api/farms_products/' + farmName;
   const response = await fetch(productsUrl);
   const invData = await response.json();
-  console.log(invData);
   
   invData.forEach((product) => {
     const appendItem = document.createElement("tr");
