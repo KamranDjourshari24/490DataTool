@@ -72,11 +72,25 @@ async function populateInventory(farmName) {
         abbrev = 'none';
     }
 
+    let is_available
+    switch (product["is_available"]) {
+      case 1:
+        is_available = "Yes";
+        break;
+      case 0:
+        is_available = "No";
+        break;
+      default:
+        is_available = "N/A";
+    }
+
+
     appendItem.innerHTML = `
     <td class="name-cell"><h5>${product["product_name"]}</h5></td>
     <td class="description-cell">${product["product_description"]}</td>
     <td class="quantity-cell"><div class="quantity-text">${product["product_quantity"]}</div></td>
     <td class="unit-cell"><abbr title="${abbrev}">${product["product_scale"]}</abbr></td>
+    <td class="avail-cell"><p>${is_available}</p></td>
     <td class="edit-inv-cell-btn"><button type="button" class="btn btn-primary edit-btn" data-modal-type="editProduct" data-bs-toggle="modal" data-bs-target="#editModal"><i class="fas fa-edit"></i></button></td>`;
 
 
@@ -139,9 +153,23 @@ async function fillEditModal(row) {
     default:
       selIndex = '0';
   }
+
+  let is_available
+  switch (productData[4]) {
+    case "Yes":
+      is_available = "0";
+      break;
+    case "No":
+      is_available = "1";
+      break;
+    default:
+      is_available = "N/A";
+  }
+
   // availabilityIn.value = productData[4];
   scaleDropdown.selectedIndex = selIndex;
-
+  console.log(productData[4]);
+  availabilityIn.selectedIndex = is_available;
   deleteButton.style.display = 'block';
   
   // handle submit button
