@@ -209,7 +209,7 @@ router.route('/farms_products')
         type: sequelize.QueryTypes.DELETE
       });
       console.log('Successfully deleted from farm_products')
-      res.json(result);
+      res.send({message: 'Successfully deleted from farm_products'});
     } catch (err) {
       res.json({error: 'something went wrong!'});
     }
@@ -308,8 +308,6 @@ router.route('/farms_products/:farm_name')
 
       const prodRow = getRowByProduct(prodInfo, req.body.product_name);
       const prodId = prodRow.map((product) => product.product_id)[0];
-      console.log(farmId);
-      console.log(prodId);
 
       const result = await db.sequelizeDB.query(farmProducts.farmProductsPut, {
         replacements: {
