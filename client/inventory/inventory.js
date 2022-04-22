@@ -92,7 +92,7 @@ async function populateInventory(farmName) {
 }
 
 async function submitButtonHandler() {
-  if (scaleDropdown.selectedIndex == 0) {
+  if (scaleDropdown.selectedIndex == 0 | productNameIn.value == '') {
     await disableButton(submitButton);
   } else {
     await enableButton(submitButton);
@@ -168,6 +168,7 @@ async function initModal(targetModal) {
   if (productModal._element.getAttribute('id') == 'editModal') {
     resetModalContents();
     scaleDropdown.addEventListener('change', submitButtonHandler);
+    productNameIn.addEventListener('input', submitButtonHandler);
   }
 }
 
