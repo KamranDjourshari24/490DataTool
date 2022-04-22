@@ -23,6 +23,7 @@ const quantityIn = document.getElementById("quantityContorllerInput3");
 const scaleDropdown = document.getElementById("scaleDropdown");
 const availabilityIn = document.getElementById("availabilityDropdown");
 const submitButton = document.getElementById("saveChangesBtn");
+const deleteButton = document.getElementById("deleteProductBtn");
 const productForm = document.getElementById("editForm");
 
 const inventoryTable = document.getElementById('inventory-body');
@@ -140,6 +141,9 @@ async function fillEditModal(row) {
   }
   // availabilityIn.value = productData[4];
   scaleDropdown.selectedIndex = selIndex;
+
+  deleteButton.style.display = 'block';
+  
   // handle submit button
   submitButtonHandler();
   submitButton.removeEventListener('click', createProduct);
@@ -158,7 +162,8 @@ async function initModal(targetModal) {
       resetModalContents();
     });
   });
-
+  
+  deleteButton.addEventListener('click', deleteProduct);
 
   if (productModal._element.getAttribute('id') == 'editModal') {
     resetModalContents();
@@ -174,6 +179,8 @@ async function fillCreateModal() {
   }
   productModal.show();
 
+  deleteButton.style.display = 'none';
+  
   submitButtonHandler();
   submitButton.removeEventListener('click', createProduct);
   submitButton.removeEventListener('click', updateInventory);
@@ -238,10 +245,12 @@ async function createProduct(evt) {
 
 async function deleteProduct(evt) {
   evt.preventDefault();
+  const farmName = hardFarmId.replace('_', ' ');
   const options = {
     method: 'DELETE',
     body: JSON.stringify({
       product_name: productNameIn.value,
+      farm_name: farmName
     }),
     headers: {
       'content-type': 'application/json; charset=UTF-8'
@@ -249,7 +258,7 @@ async function deleteProduct(evt) {
   }
   
   try {
-    const response = await fetch('../api/farms_products/'+hardFarmId, options);
+    const response = await fetch('../api/farms_products', options);
     const data = await response.json();
     console.log(data['message']);
     productModal.hide();
