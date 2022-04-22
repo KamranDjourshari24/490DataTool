@@ -209,9 +209,13 @@ async function updateInventory(evt) {
     }
   }
   const response = await fetch('../api/farms_products/Apple_Farm', options);
-  const data = response.json();
-
-  await populateInventory('Apple_Farm');
+  const data = await response.json();
+  try {
+    console.log(data['message']);
+    await populateInventory('Apple_Farm');
+  } catch (err) {
+    console.error('Update unsuccessful');
+  }
 }
 
 async function createProduct(evt) {

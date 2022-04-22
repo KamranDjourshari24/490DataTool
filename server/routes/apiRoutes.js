@@ -278,7 +278,7 @@ router.route('/farms_products/:farm_name')
       });
       // console.log(result);
       console.log("you touched the route!");
-      res.json(result);
+      res.send({message:'Update successful'});
       
     } catch(err) {
       console.error(err);
