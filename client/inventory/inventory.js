@@ -9,8 +9,6 @@
 //    avoid misuse.
 // ************************************************************************************************
 
-import { request } from "express";
-
 async function disableButton(btn) {
   btn.setAttribute('disabled', true);
 }
@@ -23,6 +21,7 @@ const productNameIn = document.getElementById("productNameControllerInput1");
 const descriptionIn = document.getElementById("descriptionControllerInput2");
 const quantityIn = document.getElementById("quantityContorllerInput3");
 const scaleDropdown = document.getElementById("scaleDropdown");
+const availabilityIn = document.getElementById("availabilityDropdown");
 const submitButton = document.getElementById("saveChangesBtn");
 const productForm = document.getElementById("editForm");
 
@@ -35,7 +34,7 @@ function resetModalContents() {
   descriptionIn.value='';
   quantityIn.value='';
   scaleDropdown.selectedIndex = '0';
-  
+  availabilityIn.selectedIndex = '0';
   // try {
   //   submitButton.removeEventListener('submit', createProduct);
   // } catch {
@@ -46,13 +45,14 @@ function resetModalContents() {
 
 
 
-async function populateInventory(farmId) {
+async function populateInventory(farmName) {
   const tableRows = inventoryTable.querySelectorAll("*");
   tableRows.forEach((row) => { row.remove(); });
 
-  const productsUrl = '/api/farms_products/' + farmId;
+  const productsUrl = '../api/farms_products/' + farmName;
   const response = await fetch(productsUrl);
   const invData = await response.json();
+  console.log(invData);
   
   invData.forEach((product) => {
     const appendItem = document.createElement("tr");
@@ -62,10 +62,13 @@ async function populateInventory(farmId) {
       case "lbs":
         abbrev = 'pounds';
         break;
+      case "oz":
+        abbrev = 'ounces';
+        break;
       case "kg":
         abbrev = 'kilograms';
         break;
-      case "n":
+      case "count":
         abbrev = 'count';
         break;
       default:
@@ -74,7 +77,7 @@ async function populateInventory(farmId) {
 
     appendItem.innerHTML = `
     <td class="name-cell"><h5>${product["product_name"]}</h5></td>
-    <td class="description-cell">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</td>
+    <td class="description-cell">${product["product_description"]}</td>
     <td class="quantity-cell"><div class="quantity-text">${product["product_quantity"]}</div></td>
     <td class="unit-cell"><abbr title="${abbrev}">${product["product_scale"]}</abbr></td>
     <td class="edit-inv-cell-btn"><button type="button" class="btn btn-primary edit-btn" data-modal-type="editProduct" data-bs-toggle="modal" data-bs-target="#editModal"><i class="fas fa-edit"></i></button></td>`;
@@ -139,13 +142,13 @@ async function fillEditModal(row) {
     default:
       selIndex = '0';
   }
-
+  // availabilityIn.value = productData[4];
   scaleDropdown.selectedIndex = selIndex;
   // handle submit button
   submitButtonHandler();
   submitButton.removeEventListener('click', createProduct);
   submitButton.removeEventListener('click', updateInventory);
-  submitButton.addEventListener('click', await updateInventory, {signal: controller.signal});
+  submitButton.addEventListener('click', updateInventory);
   // productForm.setAttribute('onsubmit', 'updateInventory()');
 }
 
@@ -183,32 +186,47 @@ async function fillCreateModal() {
     productNameIn.removeAttribute('disabled');
   }
   productModal.show();
+
   submitButtonHandler();
-  console.log('here');
   submitButton.removeEventListener('click', createProduct);
   submitButton.removeEventListener('click', updateInventory);
 
-  submitButton.addEventListener('click', createProduct, {signal: controller.signal});
+  submitButton.addEventListener('click', createProduct);
 }
 
 async function updateInventory(evt) {
   evt.preventDefault();
-  alert("Product updated");
-  await populateInventory('2');
+  const options = {
+    method: 'PUT',
+    body: JSON.stringify({
+      product_name: productNameIn.value,
+      product_description: descriptionIn.value,
+      product_quantity: quantityIn.value,
+      product_scale: scaleDropdown.value,
+      is_available: availabilityIn.value
+    }),
+    headers: {
+      'content-type': 'application/json; charset=UTF-8'
+    }
+  }
+  const response = await fetch('../api/farms_products/Apple_Farm', options);
+  const data = response.json();
+
+  await populateInventory('Apple_Farm');
 }
 
 async function createProduct(evt) {
   evt.preventDefault();
   alert("Product created");
   
-  await populateInventory('2');
+  await populateInventory('Apple_Farm');
 }
 
 
 
 async function dataHandler() {
   const revertChangesModal = new bootstrap.Modal(document.getElementById('saveChangesModal'));
-  await populateInventory('2', productModal);
+  await populateInventory('Apple_Farm');
   await initModal(productModal);
   await initModal(revertChangesModal);
   const createButton = document.getElementById("newProductButton");
