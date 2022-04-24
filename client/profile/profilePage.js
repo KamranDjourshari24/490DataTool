@@ -3,14 +3,14 @@
 // const allTabContainers = document.querySelectorAll("div.block.prof-tab-cont");
 // const allTabs = document.querySelectorAll("tabs > ui li")
 
-const profileTabs = document.querySelectorAll("li a");
+const profileTabs = document.querySelectorAll(".tabs li a");
 const inventoryTable = document.getElementById('inventoryBody');
 const hardFarmId = 'Apple_Farm';
 
 async function selectTab() {
     
     // Activate the current tab.
-    const activeTab = document.querySelector("li.is-active");
+    const activeTab = document.querySelector(".tabs li.is-active");
     activeTab.classList.remove('is-active');
     this.parentElement.classList.add("is-active");
     
@@ -32,13 +32,47 @@ profileTabs.forEach((tab) => {
 
 
 async function populateProfileInfo(farmName) {
+  const farmTitle = document.querySelector('#farm-name strong');
+  const addressBlock = document.getElementById('addressContent');
+  const contactInfoBlock = document.getElementById('contactInfoContent');
+  const addInfoBlock = document.getElementById('additionalInfoContent');
+
   try {
     const response = await fetch('../api/urban_farms/' + farmName);
     const data = await response.json();
+    const farmInfo = data[0];
 
+    farmTitle.textContent = farmInfo['farm_name'];
+
+    let line2;
+    if (farmInfo['address2'] != '') {
+      console.log(farmInfo['address2']);
+      line2 = `</br>${farmInfo['address2']}`;
+    }
+
+    addressBlock.innerHTML = `
+    ${farmInfo['farm_name']}</br>
+    ${farmInfo['address1']}${line2}</br>
+    ${farmInfo['city']}, MD ${farmInfo['zipcode']}`;
+    
+    contactInfoBlock.innerHTML = `
+    <b>Phone Number: </b>${farmInfo['phone_number']}</br>
+    <b>Email: </b>${farmInfo['email']}</br>
+    <b>Website: </b>${farmInfo['website']}`;
+
+    let additionalInfo = farmInfo['additional_info'];
+    if (additionalInfo.startsWith('"')) {
+      additionalInfo = additionalInfo.slice(1);
+    }
+    if (additionalInfo.endsWith('"')) {
+      additionalInfo = additionalInfo.slice(0,-1);
+    }
+    addInfoBlock.innerHTML = additionalInfo.trim();
   } catch (err) {
     console.error('Unable to get profile information!');
   }
+
+  
 } 
 
 async function populateInventory(farmName) {
@@ -97,6 +131,7 @@ async function populateInventory(farmName) {
 
 async function dataHandler() {
     const profileBlock = document.getElementById("profile-info-main");
+    await populateProfileInfo(hardFarmId);
     await populateInventory(hardFarmId);
 }
 

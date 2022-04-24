@@ -142,7 +142,7 @@ router.route('/urban_farms/:farm_name')
       const farmRow = getRowByFarm(farmInfo, farmName);
       const farmId = farmRow.map((farm) => farm.farm_id)[0];
       // console.log(farmRow);
-      const result = await db.sequelizeDB.query(farmProducts.oneFarmProductsGet, {
+      const result = await db.sequelizeDB.query(farms.oneFarmsGet, {
         replacements: {
           farm_id: farmId
         },

@@ -4,7 +4,8 @@ JOIN owner USING (owner_id);`
 
 const oneFarmsGet = `SELECT farm_name, address1, address2, city, zipcode, latitude, longitude, phone_number, email, website, additional_info, fname, lname
 FROM urban_farms
-JOIN owner USING (owner_id);`
+JOIN owner USING (owner_id)
+WHERE farm_id = :farm_id;`
 
 const farmsPut = `UPDATE urban_farms
 SET farm_name = :farm_name, 

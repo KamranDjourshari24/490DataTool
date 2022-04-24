@@ -4,7 +4,15 @@
 }
 
 
-
+/* div.subtitle {
+    margin-bottom: 0.5rem;
+    margin-top: 0px;
+} */
+div.block + div.subtitle {
+    border-bottom-width: 2px; 
+    border-bottom-style: solid;
+    border-bottom-color: black;
+}
 
 #prof-logo-cont {
     position: relative;
@@ -27,8 +35,10 @@ img + button {
     cursor: pointer;
     border-radius: 5px;
 }
-
+.table-container {
+    max-height: 100%;
+}
 .box .button {
     justify-content: center;
-    display: flex;    
+    display: flex;
 }
