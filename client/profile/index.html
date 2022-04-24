@@ -2,6 +2,7 @@
 <!doctype html>
 <html lang="en">
   <head>
+    <title>My Account</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -43,18 +44,20 @@
     </section>
     <section id="profile-page-section">
       <div id="profile-info" class="container">
-        <div class="box">
-          <h1 class="title" id="farm-name"><strong>Eco City Farm</strong></h1>
-          <div class="container" id="prof-logo-cont">
-            <img class="image is-fullwidth" id="prof-logo-1" src="../images/cat-placeholder.jpeg" alt="A small grey kitten standing in a field of green grass with its tail up gazing into the camera."></img>
-            <button type="button" class="button is-link" ><i class="fas fa-edit"></i></button>
-          </div>
+        
+        <div class="block">
+          <h1 class="title is-1"><strong>My Account</strong></h1>
         </div>
         <div class="tabs is-centered">
           <ul>
-            <li id="profile-tab" class="is-active" containerId="profile-info-container">
+            <li id="farm-tab" class="is-active" containerId="farm-info-container">
               <a>
-                <span>Profile Information</span>
+                <span>Farm Details</span>
+              </a>
+            </li>
+            <li id="profile-tab" containerId="profile-info-container">
+              <a>
+                <span>Profile</span>
               </a>
             </li>
             <li id="inventory-tab" containerId="inventory-table-container">
@@ -64,67 +67,81 @@
             </li>
           </ul>
         </div>
-        <div class="box">
-          <div class="block prof-tab-cont" id="profile-info-container">
+
+        <div class="block">
+          <div class="block prof-tab-cont" id="farm-info-container">
             <!-- <h2 class="subtitle is-centered">Profile</h2> -->
-            <div class="block">
-              <div class="title is-3">Farm Information</div>
-              <hr>
+            <div class="box">
               <div class="block">
-                <div class="subtitle"><b>Address</b></div>
+                <h1 class="title" id="farm-name"><strong>Eco City Farm</strong></h1>
+                <div class="container" id="prof-logo-cont">
+                  <img class="image is-fullwidth" id="prof-logo-1" src="../images/cat-placeholder.jpeg" alt="A small grey kitten standing in a field of green grass with its tail up gazing into the camera."></img>
+                  <button type="button" class="button is-link" ><i class="fas fa-edit"></i></button>
+                </div>
+                <!-- <div class="title is-3">Farm Information</div> -->
+                <hr>
+                <div class="subtitle is-4"><b>Address</b></div>
                 <p id="addressContent"></p>
-              </div>
-              
-              <div class="block">
-                <div class="subtitle"><b>Contact Information</b></div>
+                <div class="subtitle is-4"><b>Contact Information</b></div>
                 <p id="contactInfoContent"></p>
-              </div>
-              <div class="block">
-                <div class="subtitle"><b>Additional Information</b></div>
+                <div class="subtitle is-4"><b>Additional Information</b></div>
                 <p id="additionalInfoContent"></p>
               </div>
               <hr>
-            </div>
-             
-            <div class="columns is-centered">
-              <div class="column is-one-fifth">
-                <button class="button is-primary" id="prof-to-edit">Update Profile</button>
+              <div class="columns is-centered">
+                <div class="column is-narrow">
+                  <button class="button is-primary" id="prof-to-edit">Modify Farm Info</button>
+                </div>
               </div>
             </div>
           </div>
-
-
-
+          <div class="block prof-tab-cont" id="profile-info-container" style="display: none">
+            <div class="box">
+              <div class="block">
+                <!-- <div class="title is-3">User Information</div>
+                <hr> -->
+                <p id="nameContent"></p>
+              </div>
+              <hr>
+              <div class="columns is-centered">
+                <div class="column is-narrow">
+                  <button class="button is-primary" id="prof-to-edit">Update Profile</button>
+                </div>
+              </div>
+            </div>
+          </div>
           <div class="block prof-tab-cont" id="inventory-table-container" style="display: none">
             <!-- <h2 class="subtitle is-centered">Inventory</h2> -->
-            <div class="table-container">
-              <table class="table">
-                <thead>
-                  <tr>
-                    <th>Product</th>
-                    <th>Description</th>
-                    <th>Quantity</th>
-                    <th>Unit</th>
-                    <th>Available</th>
-                  </tr>
-                </thead>
-                <tbody id="inventoryBody">
-                  <!--tr>
-                    <th>Apple Bottom Jeans</th>
-                    <th class="inv-disp-num">30</th>
-                    <th><abbr class="inventory-tab" title="pounds">lbs</abbr></th>
-                  </tr>
-                  <tr>
-                    <th>Boots with the Fur</th>
-                    <th class="inv-disp-num">45</th>
-                    <th><abbr class="inventory-tab" title="pounds">lbs</abbr></th>
-                  </tr-->
-                </tbody>
-              </table>
-            </div>
-            <div class="columns is-centered">
-              <div class="column is-one-fifth">
-                <a href="../inventory"class="button is-primary" id="prof-to-inventory">Update Inventory</a>
+            <div class="box">
+              <div class="table-container">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th>Product</th>
+                      <th>Description</th>
+                      <th>Quantity</th>
+                      <th>Unit</th>
+                      <th>Available</th>
+                    </tr>
+                  </thead>
+                  <tbody id="inventoryBody">
+                    <!--tr>
+                      <th>Apple Bottom Jeans</th>
+                      <th class="inv-disp-num">30</th>
+                      <th><abbr class="inventory-tab" title="pounds">lbs</abbr></th>
+                    </tr>
+                    <tr>
+                      <th>Boots with the Fur</th>
+                      <th class="inv-disp-num">45</th>
+                      <th><abbr class="inventory-tab" title="pounds">lbs</abbr></th>
+                    </tr-->
+                  </tbody>
+                </table>
+              </div>
+              <div class="columns is-centered">
+                <div class="column is-narrow">
+                  <a href="../inventory"class="button is-primary" id="prof-to-inventory">Update Inventory</a>
+                </div>
               </div>
             </div>
           </div>

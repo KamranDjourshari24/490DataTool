@@ -36,7 +36,7 @@ async function populateProfileInfo(farmName) {
   const addressBlock = document.getElementById('addressContent');
   const contactInfoBlock = document.getElementById('contactInfoContent');
   const addInfoBlock = document.getElementById('additionalInfoContent');
-
+  const nameBlock = document.getElementById('nameContent');
   try {
     const response = await fetch('../api/urban_farms/' + farmName);
     const data = await response.json();
@@ -68,6 +68,10 @@ async function populateProfileInfo(farmName) {
       additionalInfo = additionalInfo.slice(0,-1);
     }
     addInfoBlock.innerHTML = additionalInfo.trim();
+
+    nameBlock.innerHTML = `
+    <b>First Name: </b>${farmInfo['fname']}</br>
+    <b>Last Name: </b>${farmInfo['lname']}`;
   } catch (err) {
     console.error('Unable to get profile information!');
   }

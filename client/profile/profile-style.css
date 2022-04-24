@@ -1,6 +1,7 @@
-.title {
+.block > .title {
     display: flex;
     justify-content: center;
+    margin-top: 24px;
 }
 
 
@@ -38,7 +39,27 @@ img + button {
 .table-container {
     max-height: 100%;
 }
+.box > .block > .title {
+    margin-top: 0px;
+}
+
+.box {
+    margin-top:24px;
+}
+
+.block .subtitle {
+    margin-bottom: 5px;
+}
+
 .box .button {
     justify-content: center;
     display: flex;
+}
+
+.tabs, .tabs > ul {
+    position: sticky;
+    top: 0px;
+    background-color: white;
+    z-index: 1;
+    margin-bottom: 0px;
 }
