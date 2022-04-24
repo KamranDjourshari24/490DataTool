@@ -26,7 +26,7 @@ const submitButton = document.getElementById("saveChangesBtn");
 const deleteButton = document.getElementById("deleteProductBtn");
 const productForm = document.getElementById("editForm");
 
-const inventoryTable = document.getElementById('inventory-body');
+const inventoryTable = document.getElementById('inventoryBody');
 
 // const controller = new AbortController();
 
@@ -86,7 +86,7 @@ async function populateInventory(farmName) {
 
 
     appendItem.innerHTML = `
-    <td class="name-cell"><h5>${product["product_name"]}</h5></td>
+    <td class="name-cell"><h5><strong>${product["product_name"]}</strong></h5></td>
     <td class="description-cell">${product["product_description"]}</td>
     <td class="quantity-cell"><div class="quantity-text">${product["product_quantity"]}</div></td>
     <td class="unit-cell"><abbr title="${abbrev}">${product["product_scale"]}</abbr></td>
