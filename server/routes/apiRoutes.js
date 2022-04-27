@@ -111,7 +111,7 @@ router.route('/urban_farms')
       console.log('Successfully inserted into urban_farms')
       res.json(result);
     } catch (err) {
-      res.json({error: 'something went wrong! ub'});
+      res.json({error: 'something went wrong!'});
     }
   })
 
