@@ -1,6 +1,13 @@
-@import "https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css";
-
 .title {
   padding: 20px;
   margin-top: 25px;
+}
+
+.terms {
+  margin-left:30px;
+  margin-bottom: 30px;
+}
+
+.subtitle {
+  margin-left: 30px;
 }

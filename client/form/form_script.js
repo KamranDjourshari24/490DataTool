@@ -11,6 +11,7 @@ const phoneNumber = document.getElementById('farmPhoneNum');
 const email = document.getElementById('farmEmail');
 const btn = document.getElementById('submitBtn');
 const cb = document.getElementById('termCB');
+var ownerId;
 
 async function createFarm(e) {
     e.preventDefault();
@@ -24,14 +25,14 @@ async function createFarm(e) {
                 lname: lName.value
             }),
             headers: {
-                'Content-type': 'application/json; charset=UTF-8'
+                'content-type': 'application/json; charset=UTF-8'
             }
         };
 
         try {
             const fetchResponse1 = await fetch('../api/owners', ownerSettings);
-            const data1 = await fetchResponse1.json();
-            //return true;
+            const ownerData = await fetchResponse1.json();
+            ownerId = ownerData[0];
         } catch (e) {
             return e;
         }
@@ -51,21 +52,19 @@ async function createFarm(e) {
                 email: email.value,
                 additional_info: null,
                 website: null,
-                owner_id: 1
+                owner_id: ownerId
             }),
             headers: {
-                'Content-type': 'application/json; charset=UTF-8'
+                'content-type': 'application/json; charset=UTF-8'
             }
         };
 
         try {
             const fetchResponse2 = await fetch('../api/urban_farms', farmSettings);
-            const data2 = await fetchResponse2.json();
-            //return true;
+            const farmData = await fetchResponse2.json();
         } catch (e) {
             return e;
         }
-
     } else {
         alert('You must agree to the terms and conditions.\nForm not submitted.');
     }
