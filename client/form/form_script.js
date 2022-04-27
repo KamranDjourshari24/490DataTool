@@ -16,7 +16,28 @@ async function createFarm(e) {
     e.preventDefault();
 
     if (checkbox(cb) == true) {
-        const settings = {
+        // Owner data
+        const ownerSettings = {
+            method: 'POST',
+            body: JSON.stringify({
+                fname: fName.value,
+                lname: lName.value
+            }),
+            headers: {
+                'Content-type': 'application/json; charset=UTF-8'
+            }
+        };
+
+        try {
+            const fetchResponse1 = await fetch('../api/owners', ownerSettings);
+            const data1 = await fetchResponse1.json();
+            //return true;
+        } catch (e) {
+            return e;
+        }
+
+        // Farm data
+        const farmSettings = {
             method: 'POST',
             body: JSON.stringify({
                 farm_name: farm.value,
@@ -30,46 +51,25 @@ async function createFarm(e) {
                 email: email.value,
                 additional_info: null,
                 website: null,
+                owner_id: 1
             }),
             headers: {
-                'content-type': 'application/json; charset=UTF-8'
+                'Content-type': 'application/json; charset=UTF-8'
             }
         };
-        //alert('Form submitted');
+
         try {
-            const fetchResponse = await fetch('../api/urban_farms', settings);
-            if (fetchResponse.ok) {
-                console.log('Response OK');
-            }
-            const data = await fetchResponse.json();
-            return data;
+            const fetchResponse2 = await fetch('../api/urban_farms', farmSettings);
+            const data2 = await fetchResponse2.json();
+            //return true;
         } catch (e) {
             return e;
         }
+
     } else {
         alert('You must agree to the terms and conditions.\nForm not submitted.');
     }
 }
-
-/*await fetch('../api/urban_farms', {
-    method: 'POST',
-    body: JSON.stringify({
-        farm_name: farm.value,
-        address1: address1.value,
-        address2: address2.value,
-        city: city.value,
-        zipcode: zip.value,
-        latitude: null,
-        longitude: null,
-        phone_number: phoneNumber.value,
-        email: email.value,
-        additional_info: null,
-        website: null,
-    }),
-    headers: {
-        'content-type': 'application/json; charset=UTF-8'
-    }
-});*/
 
 // Check if user agreed to the terms and conditions
 function checkbox(toCheck) {
