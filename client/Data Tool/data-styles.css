@@ -1,6 +1,6 @@
 .column {
-    margin-left: 90px;
-    margin-right: 90px;
+    margin-left: 20px;
+    margin-right: 20px;
     align-items: center;
     align-content: center;
 }
@@ -74,6 +74,13 @@
   align-items: center;
   align-content: space-between;
   margin-left: 50px;
+}
+
+.readmore {
+  justify-content: center;
+  align-items: center;
+  align-content: space-between;
+  margin-top: 40%;
 }
 
 .farm-name {

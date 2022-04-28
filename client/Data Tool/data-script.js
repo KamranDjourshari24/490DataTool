@@ -48,10 +48,14 @@ function displayMatches(farmList) {
       singleMarker = L.marker(points).addTo(markerGroup);
       singleMarker.bindPopup(place.farm_name);
       return `
-              <li class="box result">
+              <div class="box result">
                 <div class="content">
+                <div class = "columns">
+                <div class = "column">
                                           <!-- Static photo -->
                   <img class="farm-image" src="../images/download.jpg" alt="A Test Farm Image">
+                  </div>
+                  <div class = "column is-two-fifths">
                   <div class="farm-info">
                     <h1 class="farm-name">${place.farm_name}</h1>
                     <br/>
@@ -61,11 +65,19 @@ function displayMatches(farmList) {
                     <br/>
                     <strong>Zip Code:</strong><span class="farm-row"> ${place.zip}</span>
                     <br/>
-                  </div>
+                    </div>
+                    </div>
+                    <div class = "column">
+                    <button class ="button readmore" id = '${place.farm_name}' onclick=" window.open('details_page.html','_blank')" ">Read more</button>
+                    </div>
+                    </div>
+                  
+                  
                 </div>
-              </li>      
+              </div>      
           `;
     }).join('');
+
     const firstLoc = [farmList[0].latitude,farmList[0].longitude];
     mymap.flyTo(firstLoc, 12.5);
     results.innerHTML = html;
@@ -97,4 +109,22 @@ form.addEventListener("submit", async (submitEvent) => {
   displayMatches(farms)
 })
 
-dataReturn()
+
+/* Determine which Read More button was clicked */
+let buttonClicked;
+window.addEventListener("mousemove", function(event) {
+    let buttonElements = document.querySelectorAll('.readmore');
+for (let i = 0;i < buttonElements.length;i++){
+    buttonElements[i].addEventListener('click',function(){
+        buttonClicked = (this.getAttribute('id'));
+        console.log(buttonClicked)
+    });
+};
+});
+
+
+dataReturn();
+
+
+
+
