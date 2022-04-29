@@ -59,7 +59,7 @@ function displayMatches(farmList) {
                     <br/>
                     <strong>Address:</strong><span class="farm-row"> ${place.address1}, ${place.city}</span>
                     <br/>
-                    <strong>Zip Code:</strong><span class="farm-row"> ${place.zip}</span>
+                    <strong>Zip Code:</strong><span class="farm-row"> ${place.zipcode}</span>
                     <br/>
                   </div>
                 </div>
