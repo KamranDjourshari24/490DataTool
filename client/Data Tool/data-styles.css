@@ -77,10 +77,10 @@
 }
 
 .readmore {
-  justify-content: center;
+  display: flex;
   align-items: center;
-  align-content: space-between;
-  margin-top: 40%;
+  justify-content: center;
+  margin-top: 30%;
 }
 
 .farm-name {
