@@ -53,5 +53,27 @@ details.innerHTML = bodyHtml;
 }
 
 
+/*Insert products data into table */
+async function insertTable(){
+  farmProducts = await productsData()
+  console.log(farmProducts)
+
+  const html = farmProducts.map((info) => {
+    return `
+    <tr>
+        <td>${info.product_name}</td>
+        <td>${info.product_description}</td>
+        <td>${info.product_quantity}</td>
+        <td>${info.product_scale}</td>
+        </tr>
+    
+    `;
+  }).join('');
+  table.innerHTML = html;
+}
+
+insertData();
+insertTable();
+
 
 
