@@ -37,6 +37,17 @@ function validateURL(link) {
     }
 }
 
+function getButtonClicked(){
+  const buttonElements = document.querySelectorAll('.readmore');
+  for (let i = 0;i < buttonElements.length;i++){
+      buttonElements[i].addEventListener('click',function(){
+          buttonClicked = (this.getAttribute('id'));
+          localStorage.setItem('buttonClickedGlobal', buttonClicked);
+          console.log(buttonClicked)
+      });
+  }
+}
+
 function displayMatches(farmList) {
   if (farmList.length === 0) {
     results.innerHTML = '<h1 class="box no-result">No Results Avaliable</h1>';
@@ -107,20 +118,8 @@ form.addEventListener("submit", async (submitEvent) => {
     )
   }
   displayMatches(farms)
+  getButtonClicked();
 })
-
-
-/* Determine which Read More button was clicked */
-let buttonClicked;
-window.addEventListener("mousemove", function(event) {
-    let buttonElements = document.querySelectorAll('.readmore');
-for (let i = 0;i < buttonElements.length;i++){
-    buttonElements[i].addEventListener('click',function(){
-        buttonClicked = (this.getAttribute('id'));
-        console.log(buttonClicked)
-    });
-};
-});
 
 
 dataReturn();
