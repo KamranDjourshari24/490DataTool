@@ -47,7 +47,7 @@
     <div class="container">
         <div class="columns">
             <div class="column is-7">
-                <h1 class="title is-2" id="name">Placeholder Farm</h1>
+                <h1 class="title is-2" id="name"></h1>
             </div>
             <div class="column is-5"></div>
         </div>
@@ -67,15 +67,15 @@
                         <!-- Wrapper for slides -->
                         <div class="carousel-inner">
                           <div class="item active">
-                            <img src="./images/future+with+urban+farming.jpg" alt="img1" style="width:100%; height:500px;">
+                            <img src="/images/future+with+urban+farming.jpg" alt="img1" style="width:100%; height:500px;">
                           </div>
                       
                           <div class="item">
-                            <img src="./images/newslinks-urban_farming-011820sm.jpg" alt="img2" style="width:100%; height:500px;">
+                            <img src="/images/newslinks-urban_farming-011820sm.jpg" alt="img2" style="width:100%; height:500px;">
                           </div>
                       
                           <div class="item">
-                            <img src="./images/Urban-Farming-Detroit-889x666.jpg" alt="img3" style="width:100%; height:500px;">
+                            <img src="/images/Urban-Farming-Detroit-889x666.jpg" alt="img3" style="width:100%; height:500px;">
                           </div>
                         </div>
                       
@@ -89,22 +89,22 @@
                           <span class="sr-only">Next</span>
                         </a>
                       </div>
-                      <div>
+                      <div id = "details">
                     <div class="block">
                         <div class="title is-4">Location</div>
-                        <p id="detail-addr"><b>Address:</b> 1234 Street Dr</p>
-                        <p id="detail-city"><b>City:</b> City</p>
-                        <p id="detail-zipcode"><b>Zipcode:</b> 01234</p>
+                        <p><b>Address:</b> 1234 Street Dr</p>
+                        <p><b>City:</b> City</p>
+                        <p><b>Zipcode:</b> 01234</p>
                         
                     </div>
                     <div class="block">
                         <div class="title is-4">Contact Info</div>
-                        <p id="detail-phone"><b>Phone Number:</b> 111-111-1111</p>
-                        <p id="detail-email"><b>Email: </b> farm@farmmail.com</p>
+                        <p><b>Phone Number:</b> 111-111-1111</p>
+                        <p><b>Email: </b> farm@farmmail.com</p>
                     </div>
                     <div class="block">
                         <div class="title is-4" >Additional Information</div>
-                        <p id="detail-info">Hello we are a farm. Our farm has lots of products and is really cool. We also offer tours. Please see our website at www.farm.com
+                        <p>Hello we are a farm. Our farm has lots of products and is really cool. We also offer tours. Please see our website at www.farm.com
                         </p>
                     </div>
                 </div>
@@ -114,16 +114,12 @@
                 <thead>
                   <tr>
                     <th><abbr title="Products">Products</abbr></th>
+                    <th><abbr title="Product Description">Product Description</abbr></th>
                     <th><abbr title="Amount">Amount</abbr></th>
                     <th><abbr title="Scale">Scale</abbr></th>
                   </tr>
                 </thead>
                 <tbody id="detail-products">
-                  <tr>
-                    <td>Cabbage</td>
-                    <td>100</td>
-                    <td>Kg</td>
-                  </tr>
 
                 </tbody>
               </table>
@@ -132,6 +128,7 @@
         </div>
     </div>
    
+
     <script src="data-script.js"></script>
     <script src="details-script.js"></script>
     
