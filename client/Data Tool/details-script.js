@@ -25,6 +25,32 @@ async function farmData(){
   return farm
 }
 
+/*Insert farm data into body of page */
+async function insertData(){
+  farm = await farmData()
+
+  const titleHtml= farm.farm_name
+  const bodyHtml = `<div class="block">
+  <div class="title is-4">Location</div>
+  <p><b>Address:</b> ${farm.address1}</p>
+  <p><b>City:</b> ${farm.city}</p>
+  <p><b>Zipcode:</b> ${farm.zipcode}</p>
+  
+</div>
+<div class="block">
+  <div class="title is-4">Contact Info</div>
+  <p><b>Phone Number:</b> ${farm.phone_number}</p>
+  <p><b>Email: </b> ${farm.email}</p>
+</div>
+<div class="block">
+  <div class="title is-4" >Additional Information</div>
+  <p>${farm.additional_info}
+  </p>
+</div>
+</div>`
+title.innerHTML = titleHtml;
+details.innerHTML = bodyHtml;
+}
 
 
 
