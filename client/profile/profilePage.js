@@ -46,8 +46,9 @@ async function populateProfileInfo(farmName) {
 
     let line2;
     if (farmInfo['address2'] != '') {
-      console.log(farmInfo['address2']);
       line2 = `</br>${farmInfo['address2']}`;
+    } else {
+      line2 = ``;
     }
 
     addressBlock.innerHTML = `
