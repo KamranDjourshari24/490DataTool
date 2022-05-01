@@ -52,7 +52,6 @@ async function populateProfileInfo(farmName) {
     }
 
     addressBlock.innerHTML = `
-    ${farmInfo['farm_name']}</br>
     ${farmInfo['address1']}${line2}</br>
     ${farmInfo['city']}, MD ${farmInfo['zipcode']}`;
     
