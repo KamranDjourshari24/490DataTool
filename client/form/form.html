@@ -55,71 +55,73 @@
                     <div class='field'>
                         <label class='label'>Username</label>
                         <div class='control'>
-                            <input name='username' class='input' type='text' id='username'>
+                            <input name='username' class='input' type='text' id='username' required="required">
                         </div>
                     </div>
                     <div class='field'>
                         <label class='label'>Password</label>
                         <div class='control'>
-                            <input name='password' class='input' type='password' id='password'>
+                            <input name='password' class='input' type='password' id='password' required="required">
                         </div>
                     </div>
                     <div class='field'>
                         <label class='label'>First Name</label>
                         <div class='control'>
-                            <input name='fname' class='input' type='text' id='firstName'>
+                            <input name='fname' class='input' type='text' id='firstName' required="required">
                         </div>
                     </div>
                     <div class='field'>
                         <label class='label'>Last Name</label>
                         <div class='control'>
-                            <input name='lname' class='input' type='text' id='lastName'>
+                            <input name='lname' class='input' type='text' id='lastName' required="required">
                         </div>
                     </div>
                     <div class='field'>
                         <label class='label'>Name of Business</label>
                         <div class='control'>
-                            <input name='farm_name' class='input' type='text' id='farmName'>
+                            <input name='farm_name' class='input' type='text' id='farmName' required="required">
                         </div>
                     </div>
                     <div class='field'>
                         <label class='label'>Address Line 1</label>
                         <div class='control'>
-                            <input name='address1' class='input' type='text' id='farmAddress1'>
+                            <input name='address1' class='input' type='text' id='farmAddress1' required="required">
                         </div>
                     </div>
                     <div class='field'>
                         <label class='label'>Address Line 2</label>
                         <div class='control'>
-                            <input name='address2' class='input' type='text' id='farmAddress2'>
+                            <input name='address2' class='input' type='text' id='farmAddress2' required="required">
                         </div>
                     </div>
                     <div class='field is-horizontal is-grouped'>
                         <div class='control is-expanded'>
                             <label class='label'>City</label>
-                            <input name='city' class='input' type='text' id='farmCity'>
+                            <!-- including cityZip for js field requirement -->
+                            <input name='city' class='input cityZip' type='text' id='farmCity' required="required">
                         </div>
                         <div class='control'>
                             <label class='label'>Zipcode</label>
-                            <input name='zipcode' class='input' type='text' id='farmZipcode'>
+                            <!-- including cityZip for js field requirement -->
+                            <input name='zipcode' class='input cityZip' type='text' id='farmZipcode' required="required"> 
                         </div>
                     </div>
                     <div class='field'>
                         <label class='label'>Phone Number</label>
                         <div class='control'>
-                            <input name='phone_num' class='input' type='text' id='farmPhoneNum'>
+                            <input name='phone_num' class='input' type='text' id='farmPhoneNum' required="required">
                         </div>
                     </div>
                     <div class='field'>
                         <label class='label'>Email Address</label>
                         <div class='control'>
-                            <input name='email' class='input' type='email' id='farmEmail'>
+                            <input name='email' class='input' type='email' id='farmEmail' required="required">
                         </div>
                     </div>
 
                     <label class='checkbox'>
                         <input type='checkbox' id='termCB'>
-                        I agree to the <a href='terms.html''>terms and conditions</a>
+                        I agree to the <a href='terms.html'>terms and conditions</a>
                         </label>
 
                         <div class=' field has-text-centered'>
