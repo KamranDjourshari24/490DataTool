@@ -15,6 +15,7 @@ var ownerId;
 let lat;
 let lon;
 
+var farmName;
 
 async function createFarm(e) {
     e.preventDefault();
@@ -118,8 +119,19 @@ async function createFarm(e) {
             } catch (e) {
                 return e;
             }
-        }} 
+        }
     else {
+        try {
+            const fetchResponse2 = await fetch('../api/urban_farms', farmSettings);
+            const farmData = await fetchResponse2.json();
+            localStorage.setItem('farmName', farm.value);
+            // alert(localStorage.getItem('farmName'));
+            window.location.href = '../inventory/index.html';
+        } catch (e) {
+            return e;
+        }
+    }
+    } else {
         alert('You must agree to the terms and conditions.\nForm not submitted.');
     }
 }
