@@ -62,6 +62,7 @@ async function createFarm(e) {
         try {
             const fetchResponse2 = await fetch('../api/urban_farms', farmSettings);
             const farmData = await fetchResponse2.json();
+            window.location.href = '../inventory/index.html';
         } catch (e) {
             return e;
         }
