@@ -35,7 +35,7 @@ async function createFarm(e) {
         });
     
         try {
-            if ((address1.value !== '') && (city.value !== '')) {
+            if ((address1.value !== '') || (city.value !== '')) {
                 const latLonFinder = {
                     method: 'POST',
                     body: JSON.stringify({
