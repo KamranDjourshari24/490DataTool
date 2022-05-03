@@ -12,6 +12,9 @@ const email = document.getElementById('farmEmail');
 const btn = document.getElementById('submitBtn');
 const cb = document.getElementById('termCB');
 var ownerId;
+let lat;
+let lon;
+
 
 async function createFarm(e) {
     e.preventDefault();
@@ -22,27 +25,46 @@ async function createFarm(e) {
           const fieldvalue = field.value.trim();
           const warning = parent.nextElementSibling !== null;
           if ((warning === false) && (fieldvalue === '') || (field.classList.contains('cityZip'))) {
-            if (field.classList.contains('cityZip')) {
-                parent.insertAdjacentHTML('beforeend', '<p class="help is-danger">This field is required</p>');
-            } else {
+              if (!field.classList.contains('no-warning')) {
                 parent.insertAdjacentHTML('afterend', '<p class="help is-danger">This field is required</p>');
             }
-          } else if ((warning === true) && ((fieldvalue !== ''))) {
+          } else if ((warning === true) && ((fieldvalue !== '')) && (!field.classList.contains('terms-agree'))) {
+              console.log(field.classList.contains('checkbox'))
             parent.nextElementSibling.remove();
           }
         });
     
         try {
-            const addressString = `${address1.value}, ${city.value}`
-            const url = `https://nominatim.openstreetmap.org/search?q=${addressString}&format=json&polygon_geojson=1&addressdetails=1`
-            const data = await fetch(url)
-            const coordinates = await data.json();
-            const lat = coordinates[0].lat;
-            const lon = coordinates[0].lon;
+            if ((address1.value !== '') && (city.value !== '')) {
+                const latLonFinder = {
+                    method: 'POST',
+                    body: JSON.stringify({
+                        address1: address1.value,
+                        city: city.value
+                    }),
+                    headers: {
+                        'content-type': 'application/json; charset=UTF-8'
+                    }
+                }
+                response = await fetch('../api/thirdPartyAPI', latLonFinder);
+                coordinates = await response.json()
+                console.log(coordinates.length)
+                if (coordinates.length === 0) {
+                    document.getElementById('farmAddress1').insertAdjacentHTML('afterend', 
+                    '<p class="help is-danger unique">This address does not exist. Please try checking the spelling of the address or city.</p>');
+                } else {
+                    lat = coordinates[0].lat;
+                    lon = coordinates[0].lon;
+                }
+            }
         } catch (e) {
-            document.getElementById('farmAddress1').parentElement.nextElementSibling.remove();
-            document.getElementById('farmAddress1').insertAdjacentHTML('afterend', 
-                '<p class="help is-danger">This address does not exist. Please try checking the spelling of the address or city.</p>');
+            if ((address1.value !== '') && (city.value !== '') && (zip.value !== '')) {
+                document.getElementById('farmAddress1').insertAdjacentHTML('afterend', 
+                    '<p class="help is-danger">This address does not exist. Please try checking the spelling of the address or city fields.</p>');
+            } else {
+                lat = null
+                lon = null
+            }
         }
     
         const mapping = document.getElementsByClassName('help').length;

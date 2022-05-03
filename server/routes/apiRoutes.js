@@ -2,7 +2,7 @@
 import express from 'express';
 import sequelize from 'sequelize';
 import chalk from 'chalk';
-
+import fetch from 'node-fetch'
 import db from '../database/initializeDB.js';
 import products from '../controllers/products.js';
 import farmProducts from '../controllers/farmproducts.js';
@@ -408,5 +408,20 @@ router.route('/owners')
       res.json({error: 'something went wrong!'});
     }
   });
+
+router.route('/thirdPartyAPI')
+  .post(async (req, res) => {
+    try {
+      const addressString = `${req.body.address1}, ${req.body.city}`
+      const url = `https://nominatim.openstreetmap.org/search?q=${addressString}&format=json&polygon_geojson=1&addressdetails=1`
+      const data = await fetch(url)
+      const coordinates = await data.json();
+      res.send(coordinates);
+    } catch (error) {
+      console.log(error);
+      res.json({error: 'Something went wrong on the server'});
+    }
+  });
+
 
 export default router;
