@@ -11,6 +11,8 @@ const phoneNumber = document.getElementById('farmPhoneNum');
 const email = document.getElementById('farmEmail');
 const btn = document.getElementById('submitBtn');
 const cb = document.getElementById('termCB');
+const website = document.getElementById('farmWebsite');
+const description = document.getElementById('farmDesc');
 var ownerId;
 var farmName;
 
@@ -51,8 +53,8 @@ async function createFarm(e) {
                 longitude: null,
                 phone_number: phoneNumber.value,
                 email: email.value,
-                additional_info: null,
-                website: null,
+                additional_info: description.value,
+                website: website.value,
                 owner_id: ownerId
             }),
             headers: {
