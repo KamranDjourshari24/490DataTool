@@ -44,8 +44,8 @@ async function insertData(){
 </div>
 <div class="block">
   <div class="title is-4" >Additional Information</div>
-  <p>${farm.additional_info}
-  </p>
+  <p><b> Website: </b>${farm.website}</p>
+  <p>${farm.additional_info}</p>
 </div>
 </div>`
 title.innerHTML = titleHtml;
