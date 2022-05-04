@@ -16,7 +16,6 @@ const description = document.getElementById('farmDesc');
 var ownerId;
 let lat;
 let lon;
-
 var farmName;
 
 async function createFarm(e) {
