@@ -124,6 +124,7 @@ async function createFarm(e) {
         try {
             const fetchResponse2 = await fetch('../api/urban_farms', farmSettings);
             const farmData = await fetchResponse2.json();
+            localStorage.clear();
             localStorage.setItem('farmName', farm.value);
             // alert(localStorage.getItem('farmName'));
             window.location.href = '../inventory/index.html';
