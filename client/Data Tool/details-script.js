@@ -17,11 +17,13 @@ async function farmData(){
   const endpoint = '../api/urban_farms';
   const request = await fetch(endpoint);
   const farms = await request.json();
+  console.log(farms);
   for (i=0; i<farms.length; i++){
-    if (farms[i].farm_name = buttonClicked){
+    if (farms[i].farm_name == buttonClicked){
       farm=farms[i]
     }
   }
+  
   return farm
 }
 
@@ -32,9 +34,8 @@ async function insertData(){
   const titleHtml= farm.farm_name
   const bodyHtml = `<div class="block">
   <div class="title is-4">Location</div>
-  <p><b>Address:</b> ${farm.address1}</p>
-  <p><b>City:</b> ${farm.city}</p>
-  <p><b>Zipcode:</b> ${farm.zipcode}</p>
+  <p><b>Address:</b> ${farm.address1}</br></p>
+  <p>${farm.city}, MD ${farm.zipcode} </p>
   
 </div>
 <div class="block">
