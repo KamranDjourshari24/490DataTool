@@ -22,17 +22,16 @@ var farmName;
 async function createFarm(e) {
     e.preventDefault();
     if (checkbox(cb) == true) {
-        const input = Array.from(document.getElementById('farmForm').querySelectorAll('input'));
+        const input = Array.from(document.getElementById('farmForm').querySelectorAll(('input, textarea')));
         input.forEach((field) => {
-          const parent = document.getElementById(field.id).parentElement;
-          const fieldvalue = field.value.trim();
-          const warning = parent.nextElementSibling !== null;
-          if ((warning === false) && (fieldvalue === '') || (field.classList.contains('cityZip'))) {
+            const parent = document.getElementById(field.id).parentElement;
+            const fieldvalue = field.value.trim();
+            const warning = parent.nextElementSibling !== null;
+            if ((warning === false) && (fieldvalue === '') || (field.classList.contains('cityZip'))) {
               if (!field.classList.contains('no-warning')) {
                 parent.insertAdjacentHTML('afterend', '<p class="help is-danger">This field is required</p>');
             }
           } else if ((warning === true) && ((fieldvalue !== '')) && (!field.classList.contains('terms-agree'))) {
-              console.log(field.classList.contains('checkbox'))
             parent.nextElementSibling.remove();
           }
         });
