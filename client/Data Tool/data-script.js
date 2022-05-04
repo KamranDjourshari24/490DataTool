@@ -64,7 +64,7 @@ function displayMatches(farmList) {
                 <div class = "columns">
                 <div class = "column">
                                           <!-- Static photo -->
-                  <img class="farm-image" src="../images/download.jpg" alt="A Test Farm Image">
+                  <img class="farm-image" src="./images/download.jpg" alt="A Test Farm Image">
                   </div>
                   <div class = "column is-two-fifths">
                   <div class="farm-info">
