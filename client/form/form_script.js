@@ -11,6 +11,8 @@ const phoneNumber = document.getElementById('farmPhoneNum');
 const email = document.getElementById('farmEmail');
 const btn = document.getElementById('submitBtn');
 const cb = document.getElementById('termCB');
+const website = document.getElementById('farmWebsite');
+const description = document.getElementById('farmDesc');
 var ownerId;
 let lat;
 let lon;

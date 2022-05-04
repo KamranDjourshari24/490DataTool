@@ -13,7 +13,7 @@ const __dirname = path.resolve();
 
 const app = express();
 const PORT = process.env.PORT || 3000;
-const staticFolder = 'client';
+const staticFolder = 'client/home';
 let liveReloadServer;
 
 // Add some auto-reloading to our server
