@@ -51,7 +51,7 @@ function displayMatches(farmList) {
               <li class="box result">
                 <div class="content">
                                           <!-- Static photo -->
-                  <img class="farm-image" src="../images/download.jpg" alt="A Test Farm Image">
+                  <img class="farm-image" src="./images/download.jpg" alt="A Test Farm Image">
                   <div class="farm-info">
                     <h1 class="farm-name">${place.farm_name}</h1>
                     <br/>
