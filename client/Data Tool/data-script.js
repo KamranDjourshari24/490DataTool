@@ -79,7 +79,7 @@ function displayMatches(farmList) {
                     </div>
                     </div>
                     <div class = "column">
-                    <button class ="button readmore" id = '${place.farm_name}' onclick=" window.open('details_page.html','_blank')" ">Read more</button>
+                    <a class="btn btn-secondary readmore" id = '${place.farm_name}' href="#" onclick=" window.open('details_page.html','_blank')">Learn More &raquo;</a>
                     </div>
                     </div>
                   
