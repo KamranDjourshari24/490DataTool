@@ -5,6 +5,13 @@
     align-content: center;
 }
 
+.map {
+  margin-left: 90px;
+  margin-right: 90px;
+  align-items: center;
+  align-content: center;
+}
+
 #mapid { 
     height: 500px;
     width: auto; 
