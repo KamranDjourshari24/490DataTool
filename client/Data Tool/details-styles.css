@@ -1,0 +1,9 @@
+#detailsCarousel{
+    margin-bottom: 3%;
+  }
+
+#name{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

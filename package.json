@@ -16,6 +16,7 @@
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.19.0",
+    "bulma": "^0.9.3",
     "chalk": "^4.1.1",
     "connect-livereload": "^0.6.1",
     "dotenv": "^10.0.0",
@@ -23,6 +24,7 @@
     "heroku": "^7.60.1",
     "livereload": "^0.9.3",
     "mysql2": "^2.2.5",
+    "node-fetch": "^3.2.4",
     "nodemon": "^2.0.7",
     "sequelize": "^6.17.0",
     "sequelize-cli": "^6.4.1"

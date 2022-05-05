@@ -8,6 +8,24 @@
   margin-bottom: 30px;
 }
 
+.checkbox, a {
+  color:white;
+}
+
 .subtitle {
   margin-left: 30px;
 }
+
+#submitBtn {
+  margin-top: 10px;
+}
+
+#farmForm{
+  background-color: #1E8735;
+}
+
+.label{
+  color:white;
+}
+
+

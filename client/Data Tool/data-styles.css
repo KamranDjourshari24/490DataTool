@@ -1,8 +1,15 @@
 .column {
-    margin-left: 90px;
-    margin-right: 90px;
+    margin-left: 20px;
+    margin-right: 20px;
     align-items: center;
     align-content: center;
+}
+
+.map {
+  margin-left: 90px;
+  margin-right: 90px;
+  align-items: center;
+  align-content: center;
 }
 
 #mapid { 
@@ -28,7 +35,7 @@
   }
 
 .border{
-  background-color: green;
+  background-color: #1e6f47;
   padding: 15px;
   border-radius: 25px; 
 }
@@ -74,6 +81,13 @@
   align-items: center;
   align-content: space-between;
   margin-left: 50px;
+}
+
+.readmore {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 30%;
 }
 
 .farm-name {

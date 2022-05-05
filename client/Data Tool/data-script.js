@@ -37,6 +37,17 @@ function validateURL(link) {
     }
 }
 
+function getButtonClicked(){
+  const buttonElements = document.querySelectorAll('.readmore');
+  for (let i = 0;i < buttonElements.length;i++){
+      buttonElements[i].addEventListener('click',function(){
+          buttonClicked = (this.getAttribute('id'));
+          localStorage.setItem('buttonClickedGlobal', buttonClicked);
+          console.log(buttonClicked)
+      });
+  }
+}
+
 function displayMatches(farmList) {
   if (farmList.length === 0) {
     results.innerHTML = '<h1 class="box no-result">No Results Avaliable</h1>';
@@ -48,10 +59,14 @@ function displayMatches(farmList) {
       singleMarker = L.marker(points).addTo(markerGroup);
       singleMarker.bindPopup(place.farm_name);
       return `
-              <li class="box result">
+              <div class="box result">
                 <div class="content">
+                <div class = "columns">
+                <div class = "column">
                                           <!-- Static photo -->
-                  <img class="farm-image" src="../images/download.jpg" alt="A Test Farm Image">
+                  <img class="farm-image" src="./images/download.jpg" alt="A Test Farm Image">
+                  </div>
+                  <div class = "column is-two-fifths">
                   <div class="farm-info">
                     <h1 class="farm-name">${place.farm_name}</h1>
                     <br/>
@@ -59,13 +74,21 @@ function displayMatches(farmList) {
                     <br/>
                     <strong>Address:</strong><span class="farm-row"> ${place.address1}, ${place.city}</span>
                     <br/>
-                    <strong>Zip Code:</strong><span class="farm-row"> ${place.zip}</span>
+                    <strong>Zip Code:</strong><span class="farm-row"> ${place.zipcode}</span>
                     <br/>
-                  </div>
+                    </div>
+                    </div>
+                    <div class = "column">
+                    <a class="btn btn-secondary readmore" id = '${place.farm_name}' href="#" onclick=" window.open('details_page.html','_blank')">Learn More &raquo;</a>
+                    </div>
+                    </div>
+                  
+                  
                 </div>
-              </li>      
+              </div>      
           `;
     }).join('');
+
     const firstLoc = [farmList[0].latitude,farmList[0].longitude];
     mymap.flyTo(firstLoc, 12.5);
     results.innerHTML = html;
@@ -95,6 +118,12 @@ form.addEventListener("submit", async (submitEvent) => {
     )
   }
   displayMatches(farms)
+  getButtonClicked();
 })
 
-dataReturn()
+
+dataReturn();
+
+
+
+
