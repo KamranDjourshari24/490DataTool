@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const response = await fetch('../api/urban_farms');
         const urbanFarms = await response.json();
 
-        test.innerHTML += (featuredFarms(urbanFarms, 1));
+        test.innerHTML += (featuredFarms(urbanFarms, 0));
     }
 
     displayFeaturedUrbanFarms();
