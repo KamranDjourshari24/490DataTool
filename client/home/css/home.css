@@ -87,11 +87,18 @@
     left: 50%;
     transform: translatex(-50%);
 }
-
 .btn-agriculture {
   color: #fff;
   background-color: #1e6f47;
   border-color: #1e6f47;
+  
+}
+
+.btn-agriculture:hover {
+  color: #fff;
+  background-color: #1e6f47;
+  border-color: #1e6f47;
+  
 }
 
 .footer {
