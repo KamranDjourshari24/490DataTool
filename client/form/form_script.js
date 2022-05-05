@@ -104,8 +104,8 @@ async function createFarm(e) {
                     longitude: lon,
                     phone_number: phoneNumber.value,
                     email: email.value,
-                    additional_info: null,
-                    website: null,
+                    additional_info: description.value,
+                    website: website.value,
                     owner_id: ownerId
                 }),
                 headers: {
@@ -118,7 +118,6 @@ async function createFarm(e) {
                 const farmData = await fetchResponse2.json();
                 localStorage.clear();
                 localStorage.setItem('farmName', farm.value);
-                // alert(localStorage.getItem('farmName'));
                 window.location.href = '../inventory/index.html';
             } catch (e) {
                 return e;
