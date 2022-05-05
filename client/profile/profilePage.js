@@ -5,7 +5,7 @@
 
 const profileTabs = document.querySelectorAll(".tabs li a");
 const inventoryTable = document.getElementById('inventoryBody');
-const hardFarmId = 'Apple_Farm';
+const hardFarmId = localStorage.getItem('farmName');
 
 async function selectTab() {
     

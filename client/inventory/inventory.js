@@ -30,7 +30,7 @@ const inventoryTable = document.getElementById('inventoryBody');
 
 // const controller = new AbortController();
 
-const hardFarmId = 'Apple_Farm';
+const hardFarmId = localStorage.getItem('farmName');
 
 function resetModalContents() {
   productNameIn.value='';
