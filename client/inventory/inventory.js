@@ -218,6 +218,7 @@ async function fillCreateModal() {
 
 async function updateInventory(evt) {
   evt.preventDefault();
+  submitButton.removeEventListener('click', updateInventory);
   const options = {
     method: 'PUT',
     body: JSON.stringify({
@@ -245,6 +246,7 @@ async function updateInventory(evt) {
 
 async function createProduct(evt) {
   evt.preventDefault();
+  submitButton.removeEventListener('click', createProduct);
   // alert("Product created");
   const options = {
     method: 'POST',
