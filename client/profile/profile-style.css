@@ -63,3 +63,7 @@ img + button {
     z-index: 1;
     margin-bottom: 0px;
 }
+
+.hider-box {
+    display: none;
+}

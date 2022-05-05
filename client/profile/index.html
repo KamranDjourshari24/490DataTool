@@ -79,22 +79,26 @@
               <div class="block">
                 <h1 class="title" id="farm-name"><strong></strong></h1>
                 <div class="container" id="prof-logo-cont">
-                  <img class="image is-fullwidth" id="prof-logo-1" src="../images/cat-placeholder.jpeg" alt="A small grey kitten standing in a field of green grass with its tail up gazing into the camera."></img>
-                  <button type="button" class="button is-link" ><i class="fas fa-edit"></i></button>
+                  <img class="image is-fullwidth" id="prof-logo-1" src="../images/future+with+urban+farming.jpg" alt="A small grey kitten standing in a field of green grass with its tail up gazing into the camera."></img>
+                  <!-- <button type="button" class="button is-link" ><i class="fas fa-edit"></i></button> -->
                 </div>
                 <!-- <div class="title is-3">Farm Information</div> -->
                 <hr>
-                <div class="subtitle is-4"><b>Address</b></div>
-                <p id="addressContent"></p>
-                <div class="subtitle is-4"><b>Contact Information</b></div>
-                <p id="contactInfoContent"></p>
-                <div class="subtitle is-4"><b>Additional Information</b></div>
-                <p id="additionalInfoContent"></p>
+                <div class="block" id="farm-info-content">
+                  <div class="subtitle is-4"><b>Address</b></div>
+                  <p id="addressContent"></p>
+                  <div class="subtitle is-4"><b>Contact Information</b></div>
+                  <p id="contactInfoContent"></p>
+                  <div class="subtitle is-4"><b>Additional Information</b></div>
+                  <p id="additionalInfoContent"></p>
+                </div>
               </div>
               <hr>
               <div class="columns is-centered">
-                <div class="column is-narrow">
-                  <button class="button is-primary" id="prof-to-edit">Modify Farm Info</button>
+                <div id="farmButtons" class="column is-narrow all-btns">
+                  <div class="control">
+                    <a class="button is-primary edit-btn" id="prof-to-edit" href="./edit.html">Update Profile</a>
+                  </div>
                 </div>
               </div>
             </div>
@@ -108,8 +112,18 @@
               </div>
               <hr>
               <div class="columns is-centered">
-                <div class="column is-narrow">
-                  <button class="button is-primary" id="prof-to-edit">Update Profile</button>
+                <div id="profileButtons" class="column is-narrow all-btns">
+                  <div class="control">
+                    <a class="button is-primary edit-btn" id="prof-to-edit" href="./edit.html">Update Profile</a>
+                  </div>
+                  <!-- <div class="field is-grouped form-btns is-hidden">
+                    <div class="control">
+                      <button class="button is-link" disabled="disabled">Save</button>
+                    </div>
+                    <div class="control">
+                      <button class="button is-secondary" disabled="disabled">Cancel</button>
+                    </div>
+                  </div> -->
                 </div>
               </div>
             </div>

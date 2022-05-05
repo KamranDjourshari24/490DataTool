@@ -5,30 +5,43 @@
 
 const profileTabs = document.querySelectorAll(".tabs li a");
 const inventoryTable = document.getElementById('inventoryBody');
-const hardFarmId = localStorage.getItem('farmName');
+
+
+async function getData(url) {
+  const response = await fetch(url);
+  const data = await response.json()
+  return data;
+}
+
+async function getFarmInfo(farmName) {
+  const url = '../api/urban_farms/' + farmName;
+  const farmsList = await getData(url);
+  const farmInfo = farmsList[0];
+  return farmInfo;
+}
 
 async function selectTab() {
     
-    // Activate the current tab.
-    const activeTab = document.querySelector(".tabs li.is-active");
-    activeTab.classList.remove('is-active');
-    this.parentElement.classList.add("is-active");
-    
-    // Hide all boxes.
-    const targetName = this.parentElement.getAttribute('containerId');
-    const targetBox = document.getElementById(targetName);
-    const allTabs = document.querySelectorAll('.block.prof-tab-cont');
-    allTabs.forEach((tab) => {
-        tab.style.display = "none";
-    });
-
-    targetBox.style.display = "block";
+  // Activate the current tab.
+  const activeTab = document.querySelector(".tabs li.is-active");
+  activeTab.classList.remove('is-active');
+  this.parentElement.classList.add("is-active");
+  
+  // Hide all boxes.
+  const targetName = this.parentElement.getAttribute('containerId');
+  const targetBox = document.getElementById(targetName);
+  const allTabs = document.querySelectorAll('.block.prof-tab-cont');
+  allTabs.forEach((tab) => {
+      tab.style.display = "none";
+  });
+  
+  targetBox.style.display = "block";
 }
 
-profileTabs.forEach((tab) => {
-    tab.addEventListener("click", selectTab);
-});
+async function farmInfoForm(farmName) {
 
+
+}
 
 
 async function populateProfileInfo(farmName) {
@@ -38,9 +51,7 @@ async function populateProfileInfo(farmName) {
   const addInfoBlock = document.getElementById('additionalInfoContent');
   const nameBlock = document.getElementById('nameContent');
   try {
-    const response = await fetch('../api/urban_farms/' + farmName);
-    const data = await response.json();
-    const farmInfo = data[0];
+    const farmInfo = await getFarmInfo(farmName);
 
     farmTitle.textContent = farmInfo['farm_name'];
 
@@ -84,9 +95,8 @@ async function populateInventory(farmName) {
   tableRows.forEach((row) => { row.remove(); });
   
   const productsUrl = '../api/farms_products/' + farmName;
-  const response = await fetch(productsUrl);
-  const invData = await response.json();
-    
+  const invData = await getData(productsUrl);
+
   invData.forEach((product) => {
     const appendItem = document.createElement("tr");
     appendItem.classList.add("table-row");
@@ -108,7 +118,7 @@ async function populateInventory(farmName) {
         abbrev = 'none';
     }
   
-    let is_available
+    let is_available;
     switch (product["is_available"]) {
       case 1:
         is_available = "Yes";
@@ -130,19 +140,67 @@ async function populateInventory(farmName) {
 
     inventoryTable.append(appendItem);
   });
-
 }
+
+
+async function showForm(farmName) {
+
+
+  const activeTab = document.querySelector(".tabs li.is-active");
+  const containerId = activeTab.getAttribute('containerId');
+
+  if (containerId.startsWith('farm')) {
+    const addressBlock = document.getElementById('addressContent');
+    const contactInfoBlock = document.getElementById('contactInfoContent');
+    const addInfoBlock = document.getElementById('additionalInfoContent');
+
+    const farmInfo = await getFarmInfo(farmName);
+
+
+
+  } else if (containerId.startsWith('profile')) {
+
+    
+
+  } else {
+    console.alert('not a valid form');
+    return;
+  }
+
+  const tabContent = document.getElementById(containerId);
+  const editButtons = tabContent.querySelector('.edit-btn');
+  editButtons.classList.add('is-hidden');
+
+  const formButtons = tabContent.querySelector('.form-btns');
+  formButtons.classList.remove('is-hidden');
+  formButtons.querySelectorAll("button").forEach((elm) => {
+    elm.removeAttribute('disabled');
+  });
+}
+
+
 
 async function dataHandler() {
-    const profileBlock = document.getElementById("profile-info-main");
-    await populateProfileInfo(hardFarmId);
-    await populateInventory(hardFarmId);
+  const profileBlock = document.getElementById("profile-info-main");
+  const farmStr = localStorage.getItem('farmName');
+  await populateProfileInfo(farmStr);
+  await populateInventory(farmStr);
 }
-
 
 
 async function windowActions() {
-    await dataHandler();
-  }
+  await dataHandler();
+
+  profileTabs.forEach((tab) => {
+    tab.addEventListener("click", selectTab);
+  });
+
+  // const updateButtons = document.querySelectorAll('.all-btns');
+  // updateButtons.forEach((btn) => {
+  //   btn.addEventListener('click', showForm);
+  // });
+  
+
+}
 
 window.onload = windowActions;
