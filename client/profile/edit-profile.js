@@ -17,7 +17,7 @@ async function getFarmInfo(farmName) {
 async function updateFarmInfo(ev) {
   ev.preventDefault();
   
-  const farmName = localStorage.getItem('farmName');
+  const farmName = sessionStorage.getItem('farmName');
   const farmInfo = await getFarmInfo(farmName);
   let jsonBody = {
     farm_name: farmName,
@@ -70,7 +70,7 @@ async function populateForm(farmName) {
 
 
 async function windowActions() {
-  const farmStr = localStorage.getItem('farmName');
+  const farmStr = sessionStorage.getItem('farmName');
   await populateForm(farmStr);
   const submitButton = document.getElementById('save-button');
   submitButton.addEventListener('click', updateFarmInfo);
