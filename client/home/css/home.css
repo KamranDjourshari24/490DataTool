@@ -89,7 +89,7 @@
 }
 .navbar-nav.navbar-right {
   position: relative;
-  left: 50%;
+  left: 65%;
   transform: translatex(-50%);
 }
 .btn-agriculture {
