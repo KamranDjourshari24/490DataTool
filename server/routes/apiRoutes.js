@@ -392,6 +392,8 @@ router.route('/owners')
       replacements: {
         fname: req.body.fname,
         lname: req.body.lname,
+        username: req.body.username,
+        password: req.body.password
       },
       type: sequelize.QueryTypes.INSERT
     });
@@ -409,6 +411,8 @@ router.route('/owners')
         owner_id: req.body.owner_id,
         fname: req.body.fname,
         lname: req.body.lname,
+        username: req.body.username,
+        password: req.body.password
       },
       type: sequelize.QueryTypes.UPDATE
     });
