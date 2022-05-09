@@ -18,17 +18,34 @@ The Urban Agriculture Data Tool is a project that aims to centralize and display
 * PUT: Updates records in urban_farms table based on the farm name given
 * POST: Inserts records into urban_farms table
 * DELETE: Deletes records from urban_farms table based on farm name
+
 ```/api/urbanfarms/:farm_name``` - Route for information about urban farms for a single farm determined by ```:farm_name```
 * GET: Retrieves a single farm from the urban_farms table
-```/api/farms_products```
+
+```/api/farms_products``` - Route for product information for each farm
 * GET: Retrieves all records in the farms_products table
-* PUT: Updates records in farms_products table based on the farm name given
-* POST: Inserts records into urban_farms table
-* DELETE: Deletes records from urban_farms table based on farm name
-```/api/farms_products/:farm_name```
-```/api/products```
-```/api/owners```
-```/api/thirdPartyAPI```
+* PUT: Updates records in farms_products table based on a certain farm
+* POST: Inserts records into farms_products table
+* DELETE: Deletes records from farms_products table based on a certain farm
+
+```/api/farms_products/:farm_name``` - Route for product information for a single farm determined by ```:farm_name```
+* GET: Retrieves products from a single farm
+* PUT: Updates a product for a single farm
+* POST: Adding a new product for a single farm
+
+```/api/products``` - Route for all products
+* GET: Retrieves all records in the products table
+* PUT: Updates records in products table based on a certain farm
+* POST: Inserts records into products table
+* DELETE: Deletes records from products table based on a certain farm
+
+```/api/owners``` - Route for all owners
+* PUT: Updates owners based on the owner_id
+* POST: Inserts owners into owners table
+* DELETE: Deletes owners based on owner_id
+
+```/api/thirdPartyAPI``` - Route in order to create latitude and longitude values based on address
+* PUT: Sends a response which are coordinates based on the address and city inputted
 
 
 
