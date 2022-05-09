@@ -130,6 +130,31 @@ router.route('/urban_farms')
     }
   });
 
+/*for single farms*/
+router.route('/urban_farms/:farm_name')
+  .get(async(req, res) => {
+    try { 
+      const farmName = req.params.farm_name.replace('_', ' ');
+      const farmInfo = await db.sequelizeDB.query(getTableRows('urban_farms'), {
+        type: sequelize.QueryTypes.SELECT
+      });
+      // console.log(farmName);
+      const farmRow = getRowByFarm(farmInfo, farmName);
+      const farmId = farmRow.map((farm) => farm.farm_id)[0];
+      // console.log(farmRow);
+      const result = await db.sequelizeDB.query(farms.oneFarmsGet, {
+        replacements: {
+          farm_id: farmId
+        },
+        type: sequelize.QueryTypes.SELECT
+      });
+      res.json(result);
+      console.log("you touched the route!");
+    } catch (err) {
+      res.json({error: 'something went wrong!'});
+    }
+  }); 
+
 
 /*farms products endpoint*/
 router.route('/farms_products')
@@ -219,7 +244,7 @@ router.route('/farms_products')
 router.route('/farms_products/:farm_name')
   .get(async(req, res) => {
     try {
-      // // Mapping farm name to ID (assuming we just take the farm name and get the ID on the backend)
+      // Mapping farm name to ID (assuming we just take the farm name and get the ID on the backend)
       const farmName = req.params.farm_name.replace('_', ' ');
       const farmInfo = await db.sequelizeDB.query(getTableRows('urban_farms'), {
         type: sequelize.QueryTypes.SELECT
@@ -367,6 +392,8 @@ router.route('/owners')
       replacements: {
         fname: req.body.fname,
         lname: req.body.lname,
+        username: req.body.username,
+        password: req.body.password
       },
       type: sequelize.QueryTypes.INSERT
     });
@@ -384,6 +411,8 @@ router.route('/owners')
         owner_id: req.body.owner_id,
         fname: req.body.fname,
         lname: req.body.lname,
+        username: req.body.username,
+        password: req.body.password
       },
       type: sequelize.QueryTypes.UPDATE
     });
