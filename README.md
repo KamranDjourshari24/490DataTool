@@ -13,9 +13,18 @@ The Urban Agriculture Data Tool is a project that aims to centralize and display
 3. In your desired web browser, enter the following URL to view the Application: `http://localhost:3000/`
 
 ### API Endpoints
-```/api/urbanfarms```
-```/api/urbanfarms/:farm_name```
+```/api/urbanfarms``` - Route for information about urban farms
+* GET: Retrieves all records in the urban_farms table
+* PUT: Updates records in urban_farms table based on the farm name given
+* POST: Inserts records into urban_farms table
+* DELETE: Deletes records from urban_farms table based on farm name
+```/api/urbanfarms/:farm_name``` - Route for information about urban farms for a single farm determined by ```:farm_name```
+* GET: Retrieves a single farm from the urban_farms table
 ```/api/farms_products```
+* GET: Retrieves all records in the farms_products table
+* PUT: Updates records in farms_products table based on the farm name given
+* POST: Inserts records into urban_farms table
+* DELETE: Deletes records from urban_farms table based on farm name
 ```/api/farms_products/:farm_name```
 ```/api/products```
 ```/api/owners```
