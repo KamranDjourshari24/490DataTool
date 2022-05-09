@@ -5,8 +5,7 @@ L.tileLayer(`https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_toke
   maxZoom: 18,
   id: 'mapbox/streets-v11',
   tileSize: 512,
-  zoomOffset: -1,
-  accessToken: 'pk.eyJ1Ijoia2Rqb3Vyc2hhcmkiLCJhIjoiY2wxeWpuMHRyMGRkeTNicWZsaGJqc2FrMCJ9.V8fX1KUAHlH-3jIUjj-V4g'
+  zoomOffset: -1
 }).addTo(mymap);
 const markerGroup = L.layerGroup().addTo(mymap);
 
