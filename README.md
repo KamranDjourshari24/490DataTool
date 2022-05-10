@@ -92,7 +92,7 @@ The database used to hold information for this project is a MySQL relational dat
 ### Features
 The database contains 4 tables that hold information regarding farms on the website
 
-![Database ERD](../490DataTool/client/images/Screenshot%202022-05-09%20201149.png)
+![Database ERD](client/images/Screenshot 2022-05-09 201149.png)
 
 * Urban_farms
     * Holds general information on the farm as a whole. Generally, this is information that is shown on the details page
