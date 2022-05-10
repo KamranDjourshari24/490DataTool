@@ -107,7 +107,7 @@ The database contains 4 tables that hold information regarding farms on the webs
 Changing the data in the database should be done primarily on the website. However, if you need to go directly in the database to change any data, you can log in to the database on MySQL Workbench. Through the SQL programming language, one would be able to manipulate the data. However, these changes are permanent so please be very cautious with any changes. 
 
 ### Backing-up Data
-Having a back-up of the data is important as a failsafe just in case anything goes wrong with the database. Backups should be made periodically as new data is added. Currently, the only way to back up the database is manually through MySQL.
+Having a back-up of the data is important as a failsafe just in case anything goes wrong with the database. Backups should be made periodically as new data is added. Currently, the only way to back up the database is manually through MySQL using a data dump, which you can find more information [here](https://help.fasthosts.co.uk/app/answers/detail/a_id/2133/~/back-up-and-restore-mysql-databases-using-mysql-workbench-6-or-8).
 
 
 
