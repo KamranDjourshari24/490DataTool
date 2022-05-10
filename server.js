@@ -1,14 +1,14 @@
 /* eslint-disable no-console */
+import dotenv from 'dotenv';
+dotenv.config();
+
 import express from 'express';
-import labRoutes from './server/labRoutes.js';
 import apiRoutes from './server/routes/apiRoutes.js';
 import loginRoutes from './server/routes/loginRoutes.js';
 import reload from 'livereload';
 import connectReload from 'connect-livereload';
-import dotenv from 'dotenv';
 import path from 'path';
 
-dotenv.config();
 const __dirname = path.resolve();
 // import db from './server/database/initializeDB.js';
 

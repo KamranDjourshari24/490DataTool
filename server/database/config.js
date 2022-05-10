@@ -1,23 +1,26 @@
+import dotenv from 'dotenv';
+dotenv.config();
+
 export default {
   development: {
-    username: 'ba2d1e605ceefd',
-    password: 'f3f1debf',
-    database: 'heroku_029f57a6c60d647',
-    host: 'us-cdbr-east-05.cleardb.net',
+    username: process.env.DB_USER,
+    password: process.env.DB_PASS,
+    database: process.env.DB_NAME,
+    host: process.env.HOSTNAME,
     dialect: 'mysql'
   },
   test: {
-    username: 'ba2d1e605ceefd',
-    password: 'f3f1debf',
-    database: 'heroku_029f57a6c60d647',
-    host: 'us-cdbr-east-05.cleardb.net',
+    username: process.env.DB_USER,
+    password: process.env.DB_PASS,
+    database: process.env.DB_NAME,
+    host: process.env.HOSTNAME,
     dialect: 'mysql'
   },
   production: {
-    username: 'ba2d1e605ceefd',
-    password: 'f3f1debf',
-    database: 'heroku_029f57a6c60d647',
-    host: 'us-cdbr-east-05.cleardb.net',
+    username: process.env.DB_USER,
+    password: process.env.DB_PASS,
+    database: process.env.DB_NAME,
+    host: process.env.HOSTNAME,
     dialect: 'mysql'
   }
 };
