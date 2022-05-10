@@ -1,5 +1,13 @@
 # Urban Agriculture Data Tool
-The Urban Agriculture Data Tool is a project that aims to centralize and display data on the small and medium-scale urban agriculture operations in Prince George’s County. It currently consists of a website that allows farm registration and allows users to search for farms based on certain search parameters. This website is hosted on heroku and can be accessed [here](https://team-go-green.herokuapp.com/). The data displayed on this website is stored on a MySQL database which is also hosted through Heroku using ClearDB
+The Urban Agriculture Data Tool is a project that aims to centralize and display data on the small and medium-scale urban agriculture operations in Prince George’s County. It currently consists of a website that allows farm registration and allows users to search for farms based on certain search parameters. This website is hosted on Heroku and can be accessed [here](https://team-go-green.herokuapp.com/). The data displayed on this website is stored on a MySQL database which is also hosted through Heroku using ClearDB
+
+## Features for Future Development
+* Accounts can be made but this should be for demonstration purposes ONLY. There is no security on the accounts and passwords would be very easy to find. Implementing proper account security should be prioritized before distributing the website
+* There is currently no zoning information. A feature on the map that lines out each agricultural zone in Prince George’s county and lists what is allowed in each zone would make the website more robust
+* The images on the website are currently placeholders as we do not have a server to host images that are uploaded by users. In the future, there should be a way for users to upload their own images on to the website
+* Currently, the database is hosted on the free Ignite tier of ClearDB. This has limitations in both size and speed. Once the database starts nearing the size cap for the tier, it may slow down, causing the website to slow down, and may even prevent you from inputting more data. Should this problem occur, the DB can be migrated to some other server.
+* The database itself is not very secure
+
 
 ## Developer Manual
 ### How to Install the Application and all Node Module Dependencies
@@ -12,7 +20,7 @@ The Urban Agriculture Data Tool is a project that aims to centralize and display
 2. Run ```npm start```
 3. In your desired web browser, enter the following URL to view the Application: `http://localhost:3000/`
 
-### API Endpoints
+### API Guide
 ```/api/urbanfarms``` - Route for information about urban farms
 * GET: Retrieves all records in the urban_farms table
 * PUT: Updates records in urban_farms table based on the farm name given
@@ -81,6 +89,9 @@ The database used to hold information for this project is a MySQL relational dat
 
 ### Features
 The database contains 4 tables that hold information regarding farms on the website
+
+![Database ERD](../490DataTool/client/images/Screenshot%202022-05-09%20201149.png)
+
 * Urban_farms
     * Holds general information on the farm as a whole. Generally, this is information that is shown on the details page
 * Owner
