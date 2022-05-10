@@ -1,13 +1,12 @@
 # Urban Agriculture Data Tool
 The Urban Agriculture Data Tool is a project that aims to centralize and display data on the small and medium-scale urban agriculture operations in Prince George’s County. It currently consists of a website that allows farm registration and allows users to search for farms based on certain search parameters. This website is hosted on Heroku and can be accessed [here](https://team-go-green.herokuapp.com/). The data displayed on this website is stored on a MySQL database which is also hosted through Heroku using ClearDB
 
-This website allows farms to register and create a customized profile that will display easily accessible information about their operation such as their location, what products they are producing and in what quantities, and a link to their website if they have one. This data is searchable based on the data in their profile and focuses on giving users a list of the farms closest to them meeting their search parameters. The website is built primarily through JavaScript, HTML, and CSS, and uses Bulma and Bootstrap frameworks. Maps are built using MapBox’s Leaflet using our own registered Access Token from Mapbox’s website.
-
 ## Link to website
-
+https://team-go-green.herokuapp.com/
 
 ## Features for Future Development
 * Accounts can be made but this should be for demonstration purposes ONLY. There is no security on the accounts and passwords would be very easy to find. Implementing proper account security should be prioritized before distributing the website
+* It would be best to replace the Access Token with a new personal one to ensure full access to the map. Here is detailed information on how to create the Access Token. After the token is created, go into the file data-script.js file within the Data Tool folder in the Client folder, and replace the value for the variable ‘accessToken’ within the quotes on line 1 with the new access token created. This allows for total customization of the map as well as you now have full access to the map.
 * There is currently no zoning information. A feature on the map that lines out each agricultural zone in Prince George’s county and lists what is allowed in each zone would make the website more robust
 * The images on the website are currently placeholders as we do not have a server to host images that are uploaded by users. In the future, there should be a way for users to upload their own images on to the website
 * Currently, the database is hosted on the free Ignite tier of ClearDB. This has limitations in both size and speed. Once the database starts nearing the size cap for the tier, it may slow down, causing the website to slow down, and may even prevent you from inputting more data. Should this problem occur, the DB can be migrated to some other server.
@@ -63,12 +62,10 @@ This website allows farms to register and create a customized profile that will 
 
 
 ## Website
-This website allows farms to register and create a customized profile that will display easily accessible information about their operation such as their location, what products they are producing and in what quantities, and a link to their website if they have one. This data is searchable based on the data in their profile and focuses on giving users a list of the farms closest to them meeting their search parameters. The website is built primarily through JavaScript, HTML, and CSS, and uses Bulma and Bootstrap frameworks. Maps are built using MapBox
-
+This website allows farms to register and create a customized profile that will display easily accessible information about their operation such as their location, what products they are producing and in what quantities, and a link to their website if they have one. This data is searchable based on the data in their profile and focuses on giving users a list of the farms closest to them meeting their search parameters. The website is built primarily through JavaScript, HTML, and CSS, and uses Bulma and Bootstrap frameworks. Maps are built using MapBox’s Leaflet using our own registered Access Token from Mapbox’s website.     
 
 ### Home Page
 This page is the first page that the user will land on. There is a slideshow at the top that cycles through different articles about urban agriculture, so a user who wants to learn more has access to resources that may be useful to them. Under this slideshow is the featured farms, which are a randomized set of 3 farms in order to give them exposure on the front page. Lastly, below that is the mission statement, which reflects the mission of the Prince George’s County University of Maryland Extension.
-
 
 ### Search Page
 This page can be accessed by clicking “Search” on the navigation bar. It contains a map and search fields where a user can enter whatever they want to search for. Currently they can search by farm name, city, or zipcode, or all 3. Any field can be left out of the search if needed. Once the “Submit” button is pressed, farms will show up that match the search, and these farms will also show up on the map.
