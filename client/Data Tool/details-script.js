@@ -42,10 +42,10 @@ async function insertData(){
   <div class="title is-4">Contact Info</div>
   <p><b>Phone Number:</b> ${farm.phone_number}</p>
   <p><b>Email: </b> ${farm.email}</p>
+  <p><b> Website: </b>${farm.website}</p>
 </div>
 <div class="block">
   <div class="title is-4" >Additional Information</div>
-  <p><b> Website: </b>${farm.website}</p>
   <p>${farm.additional_info}</p>
 </div>
 </div>`
