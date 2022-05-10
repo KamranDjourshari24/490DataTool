@@ -182,7 +182,8 @@ async function showForm(farmName) {
 
 async function dataHandler() {
   const profileBlock = document.getElementById("profile-info-main");
-  const farmStr = localStorage.getItem('farmName');
+  const farmStr = sessionStorage.getItem('farmName');
+  console.log(farmStr);
   await populateProfileInfo(farmStr);
   await populateInventory(farmStr);
 }
@@ -194,7 +195,6 @@ async function windowActions() {
   profileTabs.forEach((tab) => {
     tab.addEventListener("click", selectTab);
   });
-
   // const updateButtons = document.querySelectorAll('.all-btns');
   // updateButtons.forEach((btn) => {
   //   btn.addEventListener('click', showForm);
@@ -203,4 +203,4 @@ async function windowActions() {
 
 }
 
-window.onload = windowActions;
+window.addEventListener('load', windowActions);

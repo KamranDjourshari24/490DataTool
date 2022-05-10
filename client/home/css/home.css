@@ -87,6 +87,11 @@
     left: 50%;
     transform: translatex(-50%);
 }
+.navbar-nav.navbar-right {
+  position: relative;
+  left: 65%;
+  transform: translatex(-50%);
+}
 .btn-agriculture {
   color: #fff;
   background-color: #1e6f47;

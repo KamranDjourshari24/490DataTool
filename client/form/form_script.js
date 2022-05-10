@@ -76,7 +76,9 @@ async function createFarm(e) {
                 method: 'POST',
                 body: JSON.stringify({
                     fname: fName.value,
-                    lname: lName.value
+                    lname: lName.value,
+                    username: user.value,
+                    password: pw.value
                 }),
                 headers: {
                     'content-type': 'application/json; charset=UTF-8'
@@ -116,8 +118,8 @@ async function createFarm(e) {
             try {
                 const fetchResponse2 = await fetch('../api/urban_farms', farmSettings);
                 const farmData = await fetchResponse2.json();
-                localStorage.clear();
-                localStorage.setItem('farmName', farm.value);
+                sessionStorage.clear();
+                sessionStorage.setItem('farmName', farm.value);
                 window.location.href = '../inventory/index.html';
             } catch (e) {
                 return e;

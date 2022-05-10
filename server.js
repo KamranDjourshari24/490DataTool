@@ -2,6 +2,7 @@
 import express from 'express';
 import labRoutes from './server/labRoutes.js';
 import apiRoutes from './server/routes/apiRoutes.js';
+import loginRoutes from './server/routes/loginRoutes.js';
 import reload from 'livereload';
 import connectReload from 'connect-livereload';
 import dotenv from 'dotenv';
@@ -34,6 +35,7 @@ app.use(express.json());
 app.use(express.static(staticFolder));
 // app.use('/template', labRoutes);
 app.use('/api', apiRoutes);
+app.use('/user', loginRoutes);
 
 async function bootServer() {
   try {
