@@ -16,7 +16,7 @@ function authHandler() {
 
     loginBar.innerHTML = `
     <li class="nav-item${isForm}">
-      <a class="nav-link" href="../form/form.html" style="padding-left: 12px;padding-right: 12px;"><i class="fa fa-fw fa-file-text"></i> Register Your Local Farm Today </a>
+      <a class="nav-link" href="../form/form.html" style="padding-left: 12px;padding-right: 12px;"><i class="fa fa-fw fa-file-text"></i> Register </a>
     </li>
     <li class="nav-item${isLogin}">
       <a class="nav-link" href="../login/index.html" style="padding-left: 12px;padding-right: 12px;"><i class="fa fa-fw fa-user"></i> Login </a>
