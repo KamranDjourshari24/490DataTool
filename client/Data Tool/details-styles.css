@@ -1,8 +1,5 @@
-#detailsCarousel{
-    margin-bottom: 3%;
-  }
-
 #name{
+  margin-top: 20px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -11,4 +8,16 @@
 .navbar{
   padding-top: 2px;
   padding-bottom: 2px;
+}
+
+#myCarousel{
+  margin-bottom: 20px;
+}
+
+#details{
+  margin-bottom: 20px;
+}
+
+.container {
+  width: 100%;
 }
