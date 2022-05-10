@@ -1,6 +1,11 @@
 # Urban Agriculture Data Tool
 The Urban Agriculture Data Tool is a project that aims to centralize and display data on the small and medium-scale urban agriculture operations in Prince George’s County. It currently consists of a website that allows farm registration and allows users to search for farms based on certain search parameters. This website is hosted on Heroku and can be accessed [here](https://team-go-green.herokuapp.com/). The data displayed on this website is stored on a MySQL database which is also hosted through Heroku using ClearDB
 
+This website allows farms to register and create a customized profile that will display easily accessible information about their operation such as their location, what products they are producing and in what quantities, and a link to their website if they have one. This data is searchable based on the data in their profile and focuses on giving users a list of the farms closest to them meeting their search parameters. The website is built primarily through JavaScript, HTML, and CSS, and uses Bulma and Bootstrap frameworks. Maps are built using MapBox’s Leaflet using our own registered Access Token from Mapbox’s website.
+
+## Link to website
+
+
 ## Features for Future Development
 * Accounts can be made but this should be for demonstration purposes ONLY. There is no security on the accounts and passwords would be very easy to find. Implementing proper account security should be prioritized before distributing the website
 * There is currently no zoning information. A feature on the map that lines out each agricultural zone in Prince George’s county and lists what is allowed in each zone would make the website more robust
@@ -90,7 +95,7 @@ The database used to hold information for this project is a MySQL relational dat
 ### Features
 The database contains 4 tables that hold information regarding farms on the website
 
-![Database ERD](../490DataTool/client/images/Screenshot%202022-05-09%20201149.png)
+![](../490DataTool/client/images/Screenshot%202022-05-09%20201149.png)
 
 * Urban_farms
     * Holds general information on the farm as a whole. Generally, this is information that is shown on the details page
