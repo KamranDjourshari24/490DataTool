@@ -40,7 +40,6 @@ router.route('/urban_farms')
     }
   })
 
-  /*Does not work for some reason*/
   .put(async(req, res) => { 
     try {
       let ownerId;
@@ -208,8 +207,6 @@ router.route('/farms_products')
     }
   })
 
-    /*Does not work for some reason*/ 
-    // I think it is working now, might have been just typo in the request
   .delete(async(req, res) => {
     try {
       // Mapping farm name to ID (assuming we just take the farm name and get the ID on the backend)
@@ -311,10 +308,6 @@ router.route('/farms_products/:farm_name')
       console.error(err);
       res.json({error: 'something went wrong!'});
     }
-    
-    
-    
-    // res.json({error: 'Route not available'});
   })
   .put(async(req, res) => {
     try {
