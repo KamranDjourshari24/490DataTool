@@ -5,12 +5,13 @@ The Urban Agriculture Data Tool is a project that aims to centralize and display
 https://team-go-green.herokuapp.com/
 
 ## Features for Future Development
-* Accounts can be made but this should be for demonstration purposes ONLY. There is no security on the accounts and passwords would be very easy to find. Implementing proper account security should be prioritized before distributing the website
+* Accounts can be made and logged in to but this should be for demonstration purposes ONLY. There is no security on the accounts and passwords would be very easy to find. Implementing proper account security should be prioritized before distributing the website
 * It would be best to replace the Access Token with a new personal one to ensure full access to the map. Here is detailed information on how to create the Access Token. After the token is created, go into the file data-script.js file within the Data Tool folder in the Client folder, and replace the value for the variable ‘accessToken’ within the quotes on line 1 with the new access token created. This allows for total customization of the map as well as you now have full access to the map.
 * There is currently no zoning information. A feature on the map that lines out each agricultural zone in Prince George’s county and lists what is allowed in each zone would make the website more robust
 * The images on the website are currently placeholders as we do not have a server to host images that are uploaded by users. In the future, there should be a way for users to upload their own images on to the website
 * Currently, the database is hosted on the free Ignite tier of ClearDB. This has limitations in both size and speed. Once the database starts nearing the size cap for the tier, it may slow down, causing the website to slow down, and may even prevent you from inputting more data. Should this problem occur, the DB can be migrated to some other server.
 * The database itself is not very secure
+* The website is not completely optimized for mobile. It works fine as it is right now but there may be some weird formatting in some spots. These should be fixed in order to enhance the mobile user experience.
 
 
 ## Developer Manual
@@ -84,6 +85,10 @@ This page acts as an inventory management system for the farm. Here they can edi
 
 ### Contact Us
 Here, a user can enter their contact information and put in a comment or concern. This will be sent to the email of whoever is managing the website so they can view user concerns/feedback.
+
+## Master Control Site
+The master control website is a simple website that allows the deletion of records without needing to directly interact with the database. There is a drop down menu where you can select any of the farms that are currently on the website. Once you’ve selected the farm, you can delete it by pressing the “Submit” button. This will delete all information regarding the farm including the user and the products associated with that farm. Be careful with this website as the deletion is NOT REVERSIBLE.
+
 
 ## Database
 The database used to hold information for this project is a MySQL relational database and is hosted on Heroku using ClearDB. This database is meant to contain data about each farm as well as the products that each farm provides.
